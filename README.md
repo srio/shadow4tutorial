@@ -7,7 +7,8 @@ WARNING: It is recommended to download the FULL directory (in a zip for example)
 
 Documents
 ---------
-https://github.com/oasys-kit/shadow4tutorial/blob/master/shadow4_tutorial.pdf
+
+https://github.com/srio/shadow4tutorial/blob/main/shadow4_tutorial.pdf
 
 Shadow4 workspace files
 -----------------------
