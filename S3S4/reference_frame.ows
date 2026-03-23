@@ -1,29 +1,42 @@
 <?xml version='1.0' encoding='utf-8'?>
-<scheme version="2.0" title="reference frame" description="" working_directory="/Users/srio/Oasys" workspace_units="0">
+<scheme version="2.0" title="reference frame" description="" working_directory="/home/srio/Oasys" workspace_units="0">
 	<nodes>
-		<node id="0" name="Geometrical Source" qualified_name="orangecontrib.shadow4.widgets.sources.ow_geometrical.OWGeometrical" project_name="OASYS1-shadow4" version="" title="Geometrical Source" position="(131.0, 165.0)" />
-		<node id="1" name="Beam movements" qualified_name="orangecontrib.shadow4.widgets.optics.ow_beam_movements.OWBeamMovement" project_name="OASYS1-shadow4" version="" title="Beam movements" position="(264.0, 165.0)" />
-		<node id="2" name="Generic Mirror" qualified_name="orangecontrib.shadow4.widgets.optics.ow_mirror.OWMirror" project_name="OASYS1-shadow4" version="" title="Generic Mirror" position="(463.0, 149.0)" />
-		<node id="3" name="Generic Mirror" qualified_name="orangecontrib.shadow4.widgets.optics.ow_mirror.OWMirror" project_name="OASYS1-shadow4" version="" title="Generic Mirror" position="(469.0, 283.0)" />
-		<node id="4" name="Info" qualified_name="orangecontrib.shadow4.widgets.tools.ow_info.OWInfo" project_name="OASYS1-shadow4" version="" title="Info" position="(674.0, 152.0)" />
-		<node id="5" name="Info" qualified_name="orangecontrib.shadow4.widgets.tools.ow_info.OWInfo" project_name="OASYS1-shadow4" version="" title="Info" position="(665.0, 284.0)" />
-		<node id="6" name="shadow4-&gt;3 beam converter" qualified_name="orangecontrib.shadow4.widgets.compatibility.ow_shadow4_beam_to_shadow3_beam.OW_beam_converter_4_to_3" project_name="OASYS1-shadow4" version="" title="shadow4-&gt;3 beam converter" position="(338.0, 434.0)" />
-		<node id="7" name="Plane Mirror" qualified_name="orangecontrib.shadow.widgets.optical_elements.ow_plane_mirror.PlaneMirror" project_name="OASYS1-ShadowOui" version="" title="Plane Mirror" position="(501.0, 428.0)" />
-		<node id="8" name="Info" qualified_name="orangecontrib.shadow.widgets.plots.ow_info.Info" project_name="OASYS1-ShadowOui" version="" title="Info" position="(705.0, 427.0)" />
-		<node id="9" name="Plane Mirror" qualified_name="orangecontrib.shadow.widgets.optical_elements.ow_plane_mirror.PlaneMirror" project_name="OASYS1-ShadowOui" version="" title="Plane Mirror" position="(516.0, 538.0)" />
-		<node id="10" name="Info" qualified_name="orangecontrib.shadow.widgets.plots.ow_info.Info" project_name="OASYS1-ShadowOui" version="" title="Info" position="(720.0, 537.0)" />
+		<node id="0" name="Geometrical Source" qualified_name="orangecontrib.shadow4.widgets.sources.ow_geometrical.OWGeometrical" project_name="OASYS1-shadow4" version="" title="Geometrical Source" position="(130.0, 165.0)" />
+		<node id="1" name="Beam movements" qualified_name="orangecontrib.shadow4.widgets.optics.ow_beam_movements.OWBeamMovement" project_name="OASYS1-shadow4" version="" title="Beam movements" position="(266.0, 165.0)" />
+		<node id="2" name="Generic Mirror" qualified_name="orangecontrib.shadow4.widgets.optics.ow_mirror.OWMirror" project_name="OASYS1-shadow4" version="" title="Generic Mirror" position="(663.0, 565.0)" />
+		<node id="3" name="Generic Mirror" qualified_name="orangecontrib.shadow4.widgets.optics.ow_mirror.OWMirror" project_name="OASYS1-shadow4" version="" title="Generic Mirror" position="(677.0, 702.0)" />
+		<node id="4" name="Info" qualified_name="orangecontrib.shadow4.widgets.tools.ow_info.OWInfo" project_name="OASYS1-shadow4" version="" title="Info" position="(874.0, 568.0)" />
+		<node id="5" name="Info" qualified_name="orangecontrib.shadow4.widgets.tools.ow_info.OWInfo" project_name="OASYS1-shadow4" version="" title="Info" position="(865.0, 700.0)" />
+		<node id="6" name="shadow4-&gt;3 beam converter" qualified_name="orangecontrib.shadow4.widgets.compatibility.ow_shadow4_beam_to_shadow3_beam.OW_beam_converter_4_to_3" project_name="OASYS1-shadow4" version="" title="shadow4-&gt;3 beam converter" position="(479.0, 891.0)" />
+		<node id="7" name="Plane Mirror" qualified_name="orangecontrib.shadow.widgets.optical_elements.ow_plane_mirror.PlaneMirror" project_name="OASYS1-ShadowOui" version="" title="Plane Mirror" position="(642.0, 885.0)" />
+		<node id="8" name="Info" qualified_name="orangecontrib.shadow.widgets.plots.ow_info.Info" project_name="OASYS1-ShadowOui" version="" title="Info" position="(846.0, 884.0)" />
+		<node id="9" name="Plane Mirror" qualified_name="orangecontrib.shadow.widgets.optical_elements.ow_plane_mirror.PlaneMirror" project_name="OASYS1-ShadowOui" version="" title="Plane Mirror" position="(657.0, 995.0)" />
+		<node id="10" name="Info" qualified_name="orangecontrib.shadow.widgets.plots.ow_info.Info" project_name="OASYS1-ShadowOui" version="" title="Info" position="(861.0, 994.0)" />
+		<node id="11" name="Empty Element" qualified_name="orangecontrib.shadow4.widgets.optics.ow_empty_element.OWEmptyElement" project_name="OASYS1-shadow4" version="" title="Empty Element alpha=0" position="(744.0, 37.0)" />
+		<node id="12" name="Empty Element" qualified_name="orangecontrib.shadow4.widgets.optics.ow_empty_element.OWEmptyElement" project_name="OASYS1-shadow4" version="" title="Empty Element alpha=90" position="(740.0, 149.0)" />
+		<node id="13" name="Empty Element" qualified_name="orangecontrib.shadow4.widgets.optics.ow_empty_element.OWEmptyElement" project_name="OASYS1-shadow4" version="" title="Empty Element alpha=180" position="(732.0, 257.0)" />
+		<node id="14" name="Empty Element" qualified_name="orangecontrib.shadow4.widgets.optics.ow_empty_element.OWEmptyElement" project_name="OASYS1-shadow4" version="" title="Empty Element alpha=270" position="(731.0, 371.0)" />
+		<node id="15" name="Python Script" qualified_name="oasys.widgets.tools.ow_python_script.OWPythonScript" project_name="OASYS1" version="" title="Python Script" position="(1029.0, 225.0)" />
 	</nodes>
 	<links>
 		<link id="0" source_node_id="0" sink_node_id="1" source_channel="Shadow Data" sink_channel="Shadow Data" enabled="true" />
-		<link id="1" source_node_id="1" sink_node_id="2" source_channel="Shadow Data" sink_channel="Shadow Data" enabled="true" />
-		<link id="2" source_node_id="1" sink_node_id="3" source_channel="Shadow Data" sink_channel="Shadow Data" enabled="true" />
+		<link id="1" source_node_id="1" sink_node_id="2" source_channel="Shadow Data" sink_channel="Shadow Data" enabled="false" />
+		<link id="2" source_node_id="1" sink_node_id="3" source_channel="Shadow Data" sink_channel="Shadow Data" enabled="false" />
 		<link id="3" source_node_id="2" sink_node_id="4" source_channel="Shadow Data" sink_channel="Shadow Data" enabled="true" />
 		<link id="4" source_node_id="3" sink_node_id="5" source_channel="Shadow Data" sink_channel="Shadow Data" enabled="true" />
-		<link id="5" source_node_id="1" sink_node_id="6" source_channel="Shadow Data" sink_channel="Shadow Data" enabled="true" />
+		<link id="5" source_node_id="1" sink_node_id="6" source_channel="Shadow Data" sink_channel="Shadow Data" enabled="false" />
 		<link id="6" source_node_id="6" sink_node_id="7" source_channel="Shadow3 Beam" sink_channel="Input Beam" enabled="true" />
 		<link id="7" source_node_id="7" sink_node_id="8" source_channel="Beam" sink_channel="Input Beam" enabled="true" />
 		<link id="8" source_node_id="9" sink_node_id="10" source_channel="Beam" sink_channel="Input Beam" enabled="true" />
 		<link id="9" source_node_id="6" sink_node_id="9" source_channel="Shadow3 Beam" sink_channel="Input Beam" enabled="true" />
+		<link id="10" source_node_id="1" sink_node_id="11" source_channel="Shadow Data" sink_channel="Shadow Data" enabled="true" />
+		<link id="11" source_node_id="1" sink_node_id="12" source_channel="Shadow Data" sink_channel="Shadow Data" enabled="true" />
+		<link id="12" source_node_id="1" sink_node_id="13" source_channel="Shadow Data" sink_channel="Shadow Data" enabled="true" />
+		<link id="13" source_node_id="1" sink_node_id="14" source_channel="Shadow Data" sink_channel="Shadow Data" enabled="true" />
+		<link id="14" source_node_id="11" sink_node_id="15" source_channel="Shadow Data" sink_channel="in_object_1" enabled="true" />
+		<link id="15" source_node_id="12" sink_node_id="15" source_channel="Shadow Data" sink_channel="in_object_2" enabled="true" />
+		<link id="16" source_node_id="13" sink_node_id="15" source_channel="Shadow Data" sink_channel="in_object_3" enabled="true" />
+		<link id="17" source_node_id="14" sink_node_id="15" source_channel="Shadow Data" sink_channel="in_object_4" enabled="true" />
 	</links>
 	<annotations />
 	<thumbnail />
@@ -52,8 +65,8 @@ T05FU1BFQ0lGSUVElIwPb3B0aW1pemVfc291cmNllEsAjApwaGFzZV9kaWZmlEcAAAAAAAAAAIwa
 cGhvdG9uX2VuZXJneV9kaXN0cmlidXRpb26USwCME3BvbGFyaXphdGlvbl9kZWdyZWWURz/wAAAA
 AAAAjAtyZWN0X2hlaWdodJRHP2BiTdLxqfyMCnJlY3Rfd2lkdGiURz9QYk3S8an8jBNzYXZlZFdp
 ZGdldEdlb21ldHJ5lIwDc2lwlIwOX3VucGlja2xlX3R5cGWUk5SMDFB5UXQ1LlF0Q29yZZSMClFC
-eXRlQXJyYXmUQ0IB2dDLAAMAAAAAAEgAAAAXAAAFbwAAAugAAABIAAAALQAABW8AAALoAAAAAAIA
-AAAFoAAAAEgAAAAtAAAFbwAAAuiUhZSHlFKUjARzZWVklEoRnlYAjAdzaWdtYV95lEc/UGJN0vGp
+eXRlQXJyYXmUQ0IB2dDLAAMAAAAAAGAAAAAgAAAFhwAAAwAAAABgAAAARQAABYcAAAMAAAAAAAAA
+AAAHgAAAAGAAAABFAAAFhwAAAwCUhZSHlFKUjARzZWVklEoRnlYAjAdzaWdtYV95lEc/UGJN0vGp
 /IwRc2luZ2xlX2xpbmVfdmFsdWWUR0CPQAAAAAAAjA5zb3VyY2VfZGVwdGhfeZRHP2BiTdLxqfyM
 DHNwYXRpYWxfdHlwZZRLAYwPdW5pZm9ybV9tYXhpbXVtlEdAj5AAAAAAAIwPdW5pZm9ybV9taW5p
 bXVtlEdAj0AAAAAAAIwFdW5pdHOUSwCMEXVzZXJfZGVmaW5lZF9maWxllIwTZW5lcmd5X3NwZWN0
@@ -67,8 +80,8 @@ Rz8aNuLrHEMtjAl2aWV3X3R5cGWUSwB1Lg==
 		<properties node_id="1" format="pickle">gASVWQEAAAAAAAB9lCiMCmFwcGx5X2ZsYWeUSwGMEGlzX2F1dG9tYXRpY19ydW6UiIwKcm90YXRp
 b25feJRHAAAAAAAAAACMCnJvdGF0aW9uX3mURwAAAAAAAAAAjApyb3RhdGlvbl96lEcAAAAAAAAA
 AIwTc2F2ZWRXaWRnZXRHZW9tZXRyeZSMA3NpcJSMDl91bnBpY2tsZV90eXBllJOUjAxQeVF0NS5R
-dENvcmWUjApRQnl0ZUFycmF5lENCAdnQywADAAAAAABIAAAAFwAABW8AAALoAAAASAAAAC0AAAVv
-AAAC6AAAAAACAAAABaAAAABIAAAALQAABW8AAALolIWUh5RSlIwNdHJhbnNsYXRpb25feJRHP0Bi
+dENvcmWUjApRQnl0ZUFycmF5lENCAdnQywADAAAAAABgAAAAIAAABYcAAAMAAAAAYAAAAEUAAAWH
+AAADAAAAAAAAAAAAB4AAAABgAAAARQAABYcAAAMAlIWUh5RSlIwNdHJhbnNsYXRpb25feJRHP0Bi
 TdLxqfyMDXRyYW5zbGF0aW9uX3mURwAAAAAAAAAAjA10cmFuc2xhdGlvbl96lEc/UGJN0vGp/IwJ
 dmlld190eXBllEsAdS4=
 </properties>
@@ -373,5 +386,75 @@ SwGMDnVzZXJfZGVmaW5lZF9slEsBjA52ZXJ0aWNhbF9xdW90ZZRHAAAAAAAAAACMCXZpZXdfdHlw
 ZZRLAIwYd3JpdGVfb3V0X2luY19yZWZfYW5nbGVzlEsAdS4=
 </properties>
 		<properties node_id="10" format="literal">{'savedWidgetGeometry': None}</properties>
+		<properties node_id="11" format="pickle">gASV2AEAAAAAAAB9lCiMEWFuZ2xlc19yZXNwZWN0X3RvlEsAjBRpbWFnZV9wbGFuZV9kaXN0YW5j
+ZZRHAAAAAAAAAACME2luY2lkZW5jZV9hbmdsZV9kZWeURwAAAAAAAAAAjBRpbmNpZGVuY2VfYW5n
+bGVfbXJhZJRHQJiLL3BK67eMEGlzX2F1dG9tYXRpY19ydW6UiIwUb2Vfb3JpZW50YXRpb25fYW5n
+bGWUSwCMH29lX29yaWVudGF0aW9uX2FuZ2xlX3VzZXJfdmFsdWWURwAAAAAAAAAAjBRyZWZsZWN0
+aW9uX2FuZ2xlX2RlZ5RHQGaAAAAAAACMFXJlZmxlY3Rpb25fYW5nbGVfbXJhZJRHwJiLL3BK67eM
+E3NhdmVkV2lkZ2V0R2VvbWV0cnmUjANzaXCUjA5fdW5waWNrbGVfdHlwZZSTlIwMUHlRdDUuUXRD
+b3JllIwKUUJ5dGVBcnJheZRDQgHZ0MsAAwAAAAAAMgAAAEkAAAVZAAADKQAAADIAAABuAAAFWQAA
+AykAAAAAAAAAAAeAAAAAMgAAAG4AAAVZAAADKZSFlIeUUpSMFXNvdXJjZV9wbGFuZV9kaXN0YW5j
+ZZRHAAAAAAAAAACMCXZpZXdfdHlwZZRLAHUu
+</properties>
+		<properties node_id="12" format="pickle">gASVQQIAAAAAAAB9lCiMEWFuZ2xlc19yZXNwZWN0X3RvlEsAjBRpbWFnZV9wbGFuZV9kaXN0YW5j
+ZZRHAAAAAAAAAACME2luY2lkZW5jZV9hbmdsZV9kZWeURwAAAAAAAAAAjBRpbmNpZGVuY2VfYW5n
+bGVfbXJhZJSMFW51bXB5LmNvcmUubXVsdGlhcnJheZSMBnNjYWxhcpSTlIwFbnVtcHmUjAVkdHlw
+ZZSTlIwCZjiUiYiHlFKUKEsDjAE8lE5OTkr/////Sv////9LAHSUYkMIt+tKcC+LmECUhpRSlIwQ
+aXNfYXV0b21hdGljX3J1bpSIjBRvZV9vcmllbnRhdGlvbl9hbmdsZZRLAYwfb2Vfb3JpZW50YXRp
+b25fYW5nbGVfdXNlcl92YWx1ZZRHAAAAAAAAAACMFHJlZmxlY3Rpb25fYW5nbGVfZGVnlEdAZoAA
+AAAAAIwVcmVmbGVjdGlvbl9hbmdsZV9tcmFklGgHaA1DCLfrSnAvi5jAlIaUUpSME3NhdmVkV2lk
+Z2V0R2VvbWV0cnmUjANzaXCUjA5fdW5waWNrbGVfdHlwZZSTlIwMUHlRdDUuUXRDb3JllIwKUUJ5
+dGVBcnJheZRDQgHZ0MsAAwAAAAACDAAAAUEAAAczAAAEIQAAAgwAAAFmAAAHMwAABCEAAAAAAAAA
+AAeAAAACDAAAAWYAAAczAAAEIZSFlIeUUpSMFXNvdXJjZV9wbGFuZV9kaXN0YW5jZZRHAAAAAAAA
+AACMCXZpZXdfdHlwZZRLAHUu
+</properties>
+		<properties node_id="13" format="pickle">gASVQQIAAAAAAAB9lCiMEWFuZ2xlc19yZXNwZWN0X3RvlEsAjBRpbWFnZV9wbGFuZV9kaXN0YW5j
+ZZRHAAAAAAAAAACME2luY2lkZW5jZV9hbmdsZV9kZWeURwAAAAAAAAAAjBRpbmNpZGVuY2VfYW5n
+bGVfbXJhZJSMFW51bXB5LmNvcmUubXVsdGlhcnJheZSMBnNjYWxhcpSTlIwFbnVtcHmUjAVkdHlw
+ZZSTlIwCZjiUiYiHlFKUKEsDjAE8lE5OTkr/////Sv////9LAHSUYkMIt+tKcC+LmECUhpRSlIwQ
+aXNfYXV0b21hdGljX3J1bpSIjBRvZV9vcmllbnRhdGlvbl9hbmdsZZRLAowfb2Vfb3JpZW50YXRp
+b25fYW5nbGVfdXNlcl92YWx1ZZRHAAAAAAAAAACMFHJlZmxlY3Rpb25fYW5nbGVfZGVnlEdAZoAA
+AAAAAIwVcmVmbGVjdGlvbl9hbmdsZV9tcmFklGgHaA1DCLfrSnAvi5jAlIaUUpSME3NhdmVkV2lk
+Z2V0R2VvbWV0cnmUjANzaXCUjA5fdW5waWNrbGVfdHlwZZSTlIwMUHlRdDUuUXRDb3JllIwKUUJ5
+dGVBcnJheZRDQgHZ0MsAAwAAAAACDAAAAUEAAAczAAAEIQAAAgwAAAFmAAAHMwAABCEAAAAAAAAA
+AAeAAAACDAAAAWYAAAczAAAEIZSFlIeUUpSMFXNvdXJjZV9wbGFuZV9kaXN0YW5jZZRHAAAAAAAA
+AACMCXZpZXdfdHlwZZRLAHUu
+</properties>
+		<properties node_id="14" format="pickle">gASVQQIAAAAAAAB9lCiMEWFuZ2xlc19yZXNwZWN0X3RvlEsAjBRpbWFnZV9wbGFuZV9kaXN0YW5j
+ZZRHAAAAAAAAAACME2luY2lkZW5jZV9hbmdsZV9kZWeURwAAAAAAAAAAjBRpbmNpZGVuY2VfYW5n
+bGVfbXJhZJSMFW51bXB5LmNvcmUubXVsdGlhcnJheZSMBnNjYWxhcpSTlIwFbnVtcHmUjAVkdHlw
+ZZSTlIwCZjiUiYiHlFKUKEsDjAE8lE5OTkr/////Sv////9LAHSUYkMIt+tKcC+LmECUhpRSlIwQ
+aXNfYXV0b21hdGljX3J1bpSIjBRvZV9vcmllbnRhdGlvbl9hbmdsZZRLA4wfb2Vfb3JpZW50YXRp
+b25fYW5nbGVfdXNlcl92YWx1ZZRHAAAAAAAAAACMFHJlZmxlY3Rpb25fYW5nbGVfZGVnlEdAZoAA
+AAAAAIwVcmVmbGVjdGlvbl9hbmdsZV9tcmFklGgHaA1DCLfrSnAvi5jAlIaUUpSME3NhdmVkV2lk
+Z2V0R2VvbWV0cnmUjANzaXCUjA5fdW5waWNrbGVfdHlwZZSTlIwMUHlRdDUuUXRDb3JllIwKUUJ5
+dGVBcnJheZRDQgHZ0MsAAwAAAAACDAAAAWYAAAczAAAEIQAAAgwAAAFmAAAHMwAABCEAAAAAAAAA
+AAeAAAACDAAAAWYAAAczAAAEIZSFlIeUUpSMFXNvdXJjZV9wbGFuZV9kaXN0YW5jZZRHAAAAAAAA
+AACMCXZpZXdfdHlwZZRLAHUu
+</properties>
+		<properties node_id="15" format="pickle">gASVCQUAAAAAAAB9lCiMDGF1dG9fZXhlY3V0ZZSIjBJjdXJyZW50U2NyaXB0SW5kZXiUSwCMCWZv
+bnRfc2l6ZZRLBIwRbGlicmFyeUxpc3RTb3VyY2WUXZSMJG9hc3lzLndpZGdldHMudG9vbHMub3df
+cHl0aG9uX3NjcmlwdJSMBlNjcmlwdJSTlCmBlH2UKIwFZmxhZ3OUSwCMBnNjcmlwdJRYdQMAAGlt
+cG9ydCBTaGFkb3cKaW1wb3J0IG51bXB5IGFzIG5wCgojcHJpbnQoZGlyKGluX29iamVjdF8xKSkK
+eDAgPSBpbl9vYmplY3RfMS5iZWFtLmdldF9jb2x1bW4oMSkKejAgPSBpbl9vYmplY3RfMS5iZWFt
+LmdldF9jb2x1bW4oMykKCng5MCA9IGluX29iamVjdF8yLmJlYW0uZ2V0X2NvbHVtbigxKQp6OTAg
+PSBpbl9vYmplY3RfMi5iZWFtLmdldF9jb2x1bW4oMykKCngxODAgPSBpbl9vYmplY3RfMy5iZWFt
+LmdldF9jb2x1bW4oMSkKejE4MCA9IGluX29iamVjdF8zLmJlYW0uZ2V0X2NvbHVtbigzKQoKeDI3
+MCA9IGluX29iamVjdF80LmJlYW0uZ2V0X2NvbHVtbigxKQp6MjcwID0gaW5fb2JqZWN0XzQuYmVh
+bS5nZXRfY29sdW1uKDMpCgoKaW1wb3J0IG1hdHBsb3RsaWIucHlwbG90IGFzIHBsdAoKZmlnLCBh
+eGVzID0gcGx0LnN1YnBsb3RzKDIsIDIsIGZpZ3NpemU9KDEwLCA4KSkKCmRhdGFzZXRzID0gWwog
+ICAgKHgwLCB6MCwgIjDCsCIpLAogICAgKHg5MCwgejkwLCAiOTDCsCIpLAogICAgKHgxODAsIHox
+ODAsICIxODDCsCIpLAogICAgKHgyNzAsIHoyNzAsICIyNzDCsCIpLApdCgpmb3IgYXgsICh4LCB6
+LCBsYWJlbCkgaW4gemlwKGF4ZXMuZmxhdCwgZGF0YXNldHMpOgogICAgYXguc2NhdHRlcih4LCB6
+LCBzPTEwLCBhbHBoYT0wLjYpCiAgICBheC5zZXRfdGl0bGUobGFiZWwpCiAgICBheC5zZXRfeGxh
+YmVsKCJ4IikKICAgIGF4LnNldF95bGFiZWwoInoiKQogICAgYXguc2V0X3hsaW0oLTAuMDAyLCAw
+LjAwMikKICAgIGF4LnNldF95bGltKC0wLjAwMiwgMC4wMDIpCiAgICBheC5zZXRfYXNwZWN0KCJl
+cXVhbCIpCgpmaWcuc3VwdGl0bGUoIkJlYW0gU2NhdHRlciBQbG90cyIsIGZvbnRzaXplPTE0KQpw
+bHQudGlnaHRfbGF5b3V0KCkKcGx0LnNob3coKZSMCGZpbGVuYW1llIwmL3VzZXJzL3NyaW8vT2Fz
+eXMvT2FzeXNSdW4vc2NyaXB0MTEucHmUjARuYW1llIwLc2NyaXB0MTEucHmUdWJhjBNzYXZlZFdp
+ZGdldEdlb21ldHJ5lIwDc2lwlIwOX3VucGlja2xlX3R5cGWUk5SMDFB5UXQ1LlF0Q29yZZSMClFC
+eXRlQXJyYXmUQ0IB2dDLAAMAAAAAAMoAAACEAAAD6QAAAwAAAADKAAAAqQAAA+kAAAMAAAAAAAAA
+AAAHgAAAAMoAAACpAAAD6QAAAwCUhZSHlFKUjA1zcGxpdHRlclN0YXRllE51Lg==
+</properties>
 	</node_properties>
 </scheme>
