@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<scheme version="2.0" title="CRL Snigirev 1996" description="CRL in Snigirev et al. Nature 384 49-51 (1996)" working_directory="/users/srio/Oasys" workspace_units="1">
+<scheme version="2.0" title="CRL Snigirev 1996" description="CRL in Snigirev et al. Nature 384 49-51 (1996)" working_directory="/home/srio/Oasys" workspace_units="1">
 	<nodes>
 		<node id="0" name="Geometrical Source" qualified_name="orangecontrib.shadow.widgets.sources.ow_geometrical_source.GeometricalSource" project_name="OASYS1-ShadowOui" version="" title="Geometrical Source" position="(74.0, 285.0)" />
 		<node id="1" name="Compound Refractive Lens" qualified_name="orangecontrib.shadow.widgets.compound_optical_elements.ow_crl.CRL" project_name="OASYS1-ShadowOui" version="" title="Compound Refractive Lens" position="(387.0, 272.0)" />
@@ -30,7 +30,8 @@
 		<link id="10" source_node_id="6" sink_node_id="13" source_channel="Shadow Data" sink_channel="Input Beam" enabled="true" />
 	</links>
 	<annotations>
-		<text id="0" rect="(117.0, 14.0, 494.0, 69.0)" font-family="Helvetica" font-size="16">CRL from Snigirev et al. Nature 384 4951 (1996)</text>
+		<text id="0" rect="(117.0, 14.0, 494.0, 69.0)" font-family="Helvetica" font-size="16">CRL from Snigirev et al. Nature 384 4951 (1996)
+https://doi.org/10.1038/384049a0</text>
 	</annotations>
 	<thumbnail />
 	<node_properties>
