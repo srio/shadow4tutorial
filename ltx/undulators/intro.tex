@@ -1,0 +1,120 @@
+% \documentclass{article}
+% \usepackage{amsmath}
+% \usepackage{amssymb}
+% \usepackage{hyperref}
+
+\subsection{Synchrotron Undulator Emission: a summary based on \cite{SanchezdelRioReyesHerrera2025}}
+% \author{Based on: Modelling undulators in ray tracing simulations}
+% \date{}
+
+% \begin{document}
+
+% \maketitle
+
+\subsubsection{Basic Principles}
+
+Undulators produce brilliant, collimated synchrotron radiation through periodic electron trajectories in a sinusoidal magnetic field.
+
+\begin{equation}
+K \approx 93.37 \cdot B[T] \cdot \lambda_u[m]
+\end{equation}
+where \(K\) is the deflection parameter, \(B\) is the magnetic field, and \(\lambda_u\) is the undulator period.
+
+The resonance wavelength (on-axis, \(\theta=0\)) is:
+\begin{equation}
+\lambda = \frac{1 + K^2/2}{2\gamma^2} \lambda_u
+\end{equation}
+where \(\gamma \approx 1957 \cdot E[GeV]\) is the Lorentz factor.
+
+\subsubsection{Angular Distribution (Divergence)}
+
+At resonance, the far-field intensity follows a sinc\(^2\) pattern:
+\begin{equation}
+I(\theta) \propto \text{sinc}^2\left( \frac{\pi}{2} \tilde{\theta}^2 \right), \quad \tilde{\theta} = \theta \sqrt{L/\lambda}
+\end{equation}
+where \(L = N\lambda_u\) is the undulator length.
+
+The Gaussian approximation for divergence (r.m.s.) is:
+\begin{equation}\label{eq:elleaumeDivergence}
+\sigma_{r'} \approx 0.69 \sqrt{\frac{\lambda}{L}} \quad \text{(Elleaume model)}
+\end{equation}
+
+\subsubsection{Source Size (Spatial Distribution)}
+
+Obtained by backpropagating far-field radiation to the source plane (\(z=0\)):
+\begin{equation}\label{eq:elleaumeSize}
+\sigma_r \approx 0.218 \sqrt{\lambda L}
+\end{equation}
+
+The phase space product (non-Gaussian) is:
+\begin{equation}
+\sigma_r \sigma_{r'} \approx \frac{\lambda}{2\pi} \quad (\text{approximately twice the diffraction limit})
+\end{equation}
+
+\subsubsection{Electron Beam Effects}
+
+The electron beam is described by a 5D Gaussian distribution:
+\begin{equation}
+(x, x', y, y', \delta_{\mathcal{E}})
+\end{equation}
+with sizes \(\sigma_x, \sigma_y\), divergences \(\sigma_{x'}, \sigma_{y'}\), and energy spread \(\delta_{\mathcal{E}}\).
+
+The photon source size and divergence including electron effects:
+\begin{equation}\label{eq:convNoDispersion}
+\Sigma_x = \sqrt{\sigma_r^2 + \sigma_x^2}, \quad \Sigma_{x'} = \sqrt{\sigma_{r'}^2 + \sigma_{x'}^2}
+\end{equation}
+
+Energy spread correction (Tanaka model):
+\begin{equation}\label{eq:convDispersion}
+\Sigma_{x'} = \sqrt{(Q_a \sigma_{r'})^2 + \sigma_{x'}^2}, \quad \Sigma_x = \sqrt{(Q_s \sigma_r)^2 + \sigma_x^2}
+\end{equation}
+where \(Q_a\) and \(Q_s\) are corrective functions depending on:
+\begin{equation}
+\sigma_e = 2\pi n N \delta_{\mathcal{E}}
+\end{equation}
+with \(n\) = harmonic number and \(N\) = number of periods.
+
+\subsubsection{SHADOW4 Undulator Models}
+
+\textbf{A. "Undulator Gaussian" (Simplified)}
+\begin{itemize}
+    \item Assumes monochromatic source at/near resonance
+    \item Rays sampled from Gaussian distributions
+    \item Includes optional energy spread correction
+    \item Useful for quick beamline prototyping
+\end{itemize}
+
+\textbf{B. "Undulator Light Source" (Full Model)}
+\begin{enumerate}
+    \item Compute far-field electric field stack (3D: energy, \(\theta\), \(\varphi\)) for filament beam
+    \item Apply energy spread correction to angular array (if monochromatic)
+    \item Use intensity stack as PDF to sample ray energies and directions
+    \item Add electron emittance via Gaussian convolution
+    \item Backpropagate far field to source plane for spatial distribution
+    \item Sample ray positions from convolved distribution
+    \item Assign polarization from interpolated far-field data
+\end{enumerate}
+
+\subsubsection{Important for 4th-Generation Sources}
+
+\begin{itemize}
+    \item \textbf{Diffraction-limited size} becomes significant with low electron emittance
+    \item \textbf{Energy spread effects} are crucial for high harmonics
+    \item \textbf{Non-Gaussian phase space} requires careful modeling beyond Gaussian approximations
+    \item \textbf{Backpropagation methods} are essential for accurate source size calculation
+\end{itemize}
+
+% \subsubsection{Key Findings}
+
+% \begin{itemize}
+%     \item Ray tracing validates analytical models for size/divergence
+%     \item Energy spread significantly broadens divergence at high harmonics
+%     \item Off-resonance intensity profiles change shape (double-peak, etc.)
+%     \item Polychromatic simulations match accumulated monochromatic results
+% \end{itemize}
+
+\subsubsection{Conclusion}
+
+Undulator radiation is highly collimated and peaked at harmonic energies. Accurate ray-tracing requires proper treatment of electron beam parameters, non-Gaussian phase space modeling, backpropagation for source size calculation, and energy spread corrections for high harmonics. SHADOW4 implements both simplified Gaussian and full wave-optics-based models for modern synchrotron beamline design.
+
+% \end{document}

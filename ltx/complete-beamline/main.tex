@@ -1,0 +1,88 @@
+
+\subsection{Ray tracing simulation}
+\textbf{You will:}
+
+\begin{itemize}
+    \item Combine several optical elements
+    \item Obtain final results for a beamline in terms of flux, resolution and spot size
+\end{itemize}
+
+\textbf{Questions:}
+
+Define the following elements in SHADOW that model an X-ray undulator line at the ESRF-EBS, operating at 5 keV, with the full photon transport path spanning 51 metres from source to sample.
+
+
+\begin{itemize}
+    \item Source — Undulator U42 (period ~42 mm) installed on a straight section of the EBS-ESRF storage ring. The on-axis brilliance peak is set to be near 5 keV.
+    In SHADOW/OASYS this is represented either as an ``Undulator Gaussian" (simple approximation for on-resonance emission) and also as an ``Undulator Light Source" that samples rays according to the calculated undulator spectrum. 
+    \item Fron-end slits. All the fron-end is condensed in a single aperture of 2 $\times$ 2 mm$^2$ placed at 27.2 m from the source position.
+    \item White beam mirrors — plane Ni pair of plane mirrors coated with nickel (Ni), set at a grazing incidence angle of 7 mrad. and deflecting the beam in the horizontal plane. The mirrors reflect efficiently the radiation at 5 keV, while acting as a low-pass filter — rejecting higher harmonics from the undulator spectrum. These mirrors reduce the power of the beam by absorbing the photons that are not used at the sample, and adjusting the power entering to the monochromator.
+    \item Monochromator — double-crystal Si111. The core energy-selecting element is a double-crystal monochromator with Si(111) Bragg reflection, deflecting in the vertical plane.
+    The two parallel crystals diffract only the narrow bandwidth of photons satisfying Bragg's law at the chosen angle, producing a quasi-monochromatic beam at 5 keV.
+    The beam exits the DCM parallel to and vertically offset from the incoming beam. In OASYS these are two successive Plane Crystal elements.    
+    \item Secondary slits, after monochromator. They define the beam that will be used at the Kirkpatrick–Baez (KB). 
+    \item Focusing system. The final focusing is achieved by a KB mirror system: two successive elliptical mirrors (one focusing vertically, one horizontally), each figured to an elliptical profile with the source at one focus and the sample at the other. This arrangement produces a demagnified image of the source at the sample position. The slides show both mirrors as Elliptical Mirror elements in OASYS.
+    \item The beam arrives at the sample as a tightly focused spot. The OASYS workflow ends with a Plot XY screen and an Info widget that reports the final beam statistics.
+\end{itemize}
+
+
+
+\textbf{i)} Calculate:
+\begin{itemize}
+    \item Beam geometry at the sample position
+    \item Energy resolution
+    \item Transmitivity of the whole beamline, or number of photons at the sample position.
+\end{itemize}
+
+\textbf{Hints:} you may use the workspace file {\tt beamline.ows}.
+
+
+\textbf{Answer}
+
+In the example workspace, the simulation is done in a first place using the ``Undulator Gaussian". This is always a good starting point that gives a good approximation to the source emission on resonance. 
+
+Note also that the White mirrors deflect in the horizontal plane, therefore the {\it optical element orientation angles} are 90$^\circ$ and 180$^\circ$, respectively. This result in a global rotation of the axis (after the two reflections, col1 or X is vertical and col3 or Z in horizontal). This is ``corrected" using the ``Empty element" after the white beam mirrors.
+
+For the monochromators, the expected intrinsic resolution for the Si111 crystals is $\approx 10^{-4}$, therefore 0.5 eV at 5 keV. In consequence, the energy interval at the source has to be wide enough to cover the peak and tails. We selected $\Delta E_{src}$=4 eV.
+
+For the KB mirrors the calculation of the elliptical shape is made ``internal/calculated", meaning that SHADOW computes it giving the position of the foci. Note that the mirrors are``elliptical cylinders", they are bent only in the tangential direction, i.e. 1D-focusing (each in a different direction), so this has to be defined in the mirror shape parameters. Note also that the second KB mirror (that focus in the horizontal) has {\it optical element orientation angle} 90$^\circ$ therefore a correction using ``Empty element" is done upstream.  
+
+With this configuration (using ``Undulator Gaussian") we obtain:
+\begin{itemize}
+    \item Size: 39 $\times$ 32 nm$^2$
+    \item Energy bandwidth $\Delta E$=0.6 eV
+    \item Flux at source: $N_{src}$=6.81$\times 10^{14}$ photons/s/0.1\%bw; Integrated Flux at sample $N$=2.15$\times 10^{13}$ photons/s 
+\end{itemize}
+
+The number of photons can be calculated Automatically, using the Info widget. or manually:
+\begin{itemize}
+    \item At the source we have $I_{src}$=50000 (intensity=number of rays), $\Delta E_{src}$= 4 eV, and intensity $N_{src}$ = 6.82$\times 10^{14}$ photons/s/0.1\%bw=1.36$\times 10^{14}$ photons/s/eV.
+    \item The transmittivity of the beamline in one eV bandwidth is:
+    
+    $T=(I/\Delta E) /(I_{src}/ \Delta E_{src})$=
+    (1161/0.6)/(50000/4)=26.7\%.
+    \item the total number of phorons (in the full bandwidth) is $N = N_{src} \times T \times \Delta E$=  2.15$\times 10^{13}$ photons/s.
+\end{itemize}
+
+
+With the configuration using ``Undulator Light Source") we obtain:
+\begin{itemize}
+    \item Size: 53 $\times$ 23 nm$^2$
+    \item Energy bandwidth $\Delta E$=0.52 eV
+    \item Flux at source: $N_{src}$=3.25$\times 10^{14}$ photons/s/0.1\%bw; Integrated Flux at sample $N$=1.22$\times 10^{13}$ photons/s 
+\end{itemize}
+
+
+Note that there are some differences, that can be explained by the different values of flux at source. Indeed, the Undulator Gaussian used the analytical equation of flux at the central cone, which ignores effect of emittance. On the contrary, Undulator Light Source includes the emittance, which implies a red-shift of the peak, therefore the selected energy interval [4998,5002] does correspond to the resonance (therefore the emision is a central cone), but does not correspond to the peak of the spectrum. 
+
+Note also that the number of rays used is 15000, and the final intensity is 719. The number of rays should be increased to get better statistics (but needs more time and memory). 
+
+
+\begin{figure}[H]
+\label{fig:cb-fig1}
+\caption{Ray tracing results in terms of intensity distribution in the (X,Z) plane at the image position (left), and energy resolution (right).}
+\includegraphics[width=0.49\textwidth]{complete-beamline/fig1a.png}
+\includegraphics[width=0.49\textwidth]{complete-beamline/fig1b.png}
+\end{figure}
+
+

@@ -1,0 +1,49 @@
+\subsection{Ray tracing simulations}
+
+\textbf{You will:}
+
+\begin{itemize}
+    \item define crystals in SHADOW
+    \item use the setting facility to automatically align the crystal
+    \item calculate the energy resolution for a crystal and a combination of systems
+    \item optimise the source bandwidth
+    \item play with the mirror orientation angle. Relate its values to the crystal dispersion ( (+,-) and (+,+) crystal combination)
+    \item create crystal reflectivity data and display diffraction profiles using the ``bragg" preprocessor
+\end{itemize}
+
+\textbf{Questions:}
+
+Create an undulator source (starting from section~\ref{sec:KB}) at 5000 eV with a ``large enough" energy bandwidth (e.g. 5000$\pm$5.
+
+\textbf{i)} Implement a flat Si 111 crystal at 40 m from the source. Verify the energy dependence and calculate resolution. Redefine the source energy bandwidth to optimize the calculation in order to obtain the energy dependence with the highest signal. 
+
+\textbf{ii)} Add a second crystal 50 mm downstream from the first one in (+,-) and (+,+) configurations (play with the mirror orientation angle). 
+
+\textbf{iii)} Repeat the calculation at third harmonic ($E$=15 keV, crystal reflection 333). Explain the differences in energy resolution.
+
+\textbf{iv} Use the Bragg preprocessor to create the reflectivity data for a Si 111 crystal.
+
+\textbf{Hints:} you may use the workspace file {\tt crystalmonochromators.ows}. 
+
+
+
+
+\textbf{Answer}
+i) The wide energy range selected is 5000$\pm$5 eV. The Energy plot after the first crystal has FWHM~0.7 eV. Therefore, for avoiding to calculate so many rays that are not diffracted, we optimize the source bandwidth to 5000$\pm$1 eV. As a rule of thump, for Si 111 we expect an intrinsic resolution $\Delta E/E \approx 10^{-4}$, therefore $\Delta E$=0.5 eV.
+
+
+ii) 
+For (+,-) (non-dispersive configuration). the optical element orientation angles are 0 and 180 deg for the first and second crystals, respectively. For (+,+) (dispersive configuration) the optical element  orientation angle is 0 for both crystals. 
+
+We obtain from the histograms 0.7 eV after the first crystal. After the second crystal 0.6 eV for (+,-) and 0.5 eV for (+,+). The dispersive configuration (+,+) gives the intrinsic resolution, and the non-dispersive configuration (+,-) gives a larger bandwidth due to the effect of the beam divergence (that is small, the beam divergence is $\approx$13 $\mu$rad compared with the Darwin width $\approx$42 $\mu$ rad).
+
+iii) For the third harmonic, the energy bandwidth for the (+,-) configuration is 0.36 eV and for (+,+) is 0.06 eV. A large difference is observed here, because the beam divergence (12 $\mu$rad) is large with respect to the Darwin width (about 4 $\mu$rad). 
+
+iv) to compute the diffraction profile one can use the Bragg preprocessor. It creates the material data for the crystal. You can plug it into the crystal widget to use this file, instead performing the direct calculation. The output file should be created for a large range of energy (e.g., from 4000 to 20000 eV). This widget can also be used to display the diffraction profile at 5000 eV. Alternatively, you can use the XOPPY/CRYSTAL widget. 
+
+\begin{figure}[H]
+\label{fig:dcm-fig1}
+\caption{Intensity vs photon energy plots for the two configurations (+,-) and (+,+). Left: 1$^\text{st}$ harmonic around 5 keV. Right: 3$^\text{rd}$ harmonic around 15 keV.}
+\includegraphics[width=0.49\textwidth]{double-crystal-monochromator/fig1a.png}
+\includegraphics[width=0.49\textwidth]{double-crystal-monochromator/fig1b.png}
+\end{figure}

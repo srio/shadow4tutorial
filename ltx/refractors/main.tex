@@ -1,0 +1,77 @@
+\subsection{Ray tracing simulations}
+
+
+\textbf{You will:}
+
+\begin{itemize}
+    \item Learn to simulate CRLs and transfocators
+    \item Find the position of the best focus
+    \item Study the changes due to the source energy (chromatic aberrations)
+    \item Define a lens with elliptical shape
+\end{itemize}
+
+\textbf{Questions:}
+
+\textbf{i)} Calculate the first working CRL \cite{Snigirev1996}.
+
+
+
+
+
+\textbf{ii)} 
+Implement a transfocator consisting of two CRLs, 2D-focusing (in both H and V), the first made in Be (16 lenses of radius 200 $\mu$m, separated 50$\mu$m), and the second in Al (21 lenses of radius 200 $\mu$m, separated 50$\mu$m). The focal distances are $p$=31.50 m and $q$=10~m. This setup is discussed in \cite{Baltser2011}.
+
+Implement a monochromatoc Gaussian source of 48.2 (H) x 9.5 (V) $\mu$m RMS size and 100 (H) x 4.3 (V) $\mu$rad RMS divergence. Create the same source for two different energies (E1=35200 eV and E2=35700 eV).
+
+Study the beam evolution close to the focal plane using the ``caustic" widget. You may find a small astigmatism, i.e., the H and V foci are at slightly different position (you will find that the astigmatism disappears when using a point source, so it is the result of the final dimensions of the source). 
+
+Change the energy of the source from 35200 eV to 35700 eV and see the effect in focal position and intensity.
+
+
+\textbf{iii)} 
+Implement an elliptical lens. See the 
+
+
+\textbf{Hints:} You can use the workspaces i) {\tt refractors\_CRL\_Snigirev\_1996.ows}, ii) {\tt refractors\_transfocator.ows} and iii) {\tt refractors\_lens\_elliptical.ows}.
+
+
+\textbf{Answer}
+
+i) See the script for calculate the refraction index and focal distances. Then, in the first branch we input externally  the refraction index, and no absorption is used. The focal spot is 11 $\mu$m, and we see in the fistogram high tails. When using the internally calculated refraction index, that also includes reflectivity, we observe a 9 $\mu$m intensity profile with less tails. In third branch we recalculated the same CRL but using parabolic profile. We see limited improvements in this case, because the source is large and demagnification small. Playing with these parameters one can observe more drastic differences.
+
+
+\begin{figure}[H]
+\label{fig:tf-fig1}
+\caption{Intensity distribution in vertical direction at the image (focal) plane for a CRL with circular lenses and parabolic lenses. }
+\includegraphics[width=0.8\textwidth]{refractors/fig1.png}
+\end{figure}
+
+ii) For E=35700 eV the focused beam has dimensions 32 $\mu$m $\times$ 6$\mu$m. The focal position is well centered, as seen with the ``caustic" widget. 
+
+
+For E=35200 eV we find a focus of  33$\mu$m $\times$ 9$\mu$m (FWHM), best H focus at about -0.4 m. 
+
+\begin{figure}[H]
+\label{fig:tf-fig2}
+\caption{Caustic (vertical beam size vs propagation direction) at 35.7 keV (left) that is the energy used to tune the transfocator, and also at 35.2 keV (right) wher it can be observed a shift of the focal position at about 0.4 m upstream from the image plane. This illustrates the chromatic aberrations of the lenses.}
+\includegraphics[width=0.49\textwidth]{refractors/fig2a.png}
+\includegraphics[width=0.49\textwidth]{refractors/fig2b.png}
+\end{figure}
+
+
+
+iii) In the example workspace, we proceed as follow. We first use a collimated source, and in the different workflow branches we
+\begin{itemize}
+    \item use the ``Refractive Lens" widget to simulate a lens that will focus the collimated beam. Look at the conic coefficients that are automatically calculated
+    \item implement these coefficients manually in the ``Refractive Interface" widget. We split the lens in its two interfaces
+    \item change from two parabolic interfaces to a plane plus another arabolic interface. The script calculates the parameters
+    \item replace the parabolic lens for an elliptical lens
+\end{itemize}
+When comparing the results of the parabolic lens with the elliptical one, \textcolor{red}{practically the same performance in terms of focal size. TO FIND ANOTHER SETUP WHERE DIFFERENCES CAN BE APPRECIATED} 
+
+
+Then, it is used an almost point, and divergent source, and the parabolic and elliptical lenses are compared with the Cartesian Oval \textcolor{red}{TO BE DONE!}
+
+
+
+

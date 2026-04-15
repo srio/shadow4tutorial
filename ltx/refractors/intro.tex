@@ -1,0 +1,135 @@
+\subsection{X-ray lenses}
+
+
+In visible-light optics the refractive index of a material is greater than
+unity ($n>1$), meaning light slows down inside the medium and bends toward the
+surface normal at an interface.  For X-rays the situation is reversed: the
+refractive index is slightly \emph{less} than unity and is written as
+%
+\begin{equation}
+  n = 1 - \delta + i\beta,
+  \label{eq:refindex}
+\end{equation}
+%
+where $\delta$ is the \textbf{refractive index decrement} (a small positive
+number, typically $10^{-5}$--$10^{-7}$) and $\beta$ is the \textbf{absorption
+index}.  Because $\delta$ is so small, refraction effects are extremely
+weak---a single interface deflects an X-ray beam by only micro-radians.  This
+is why refractive lenses for X-rays were considered impractical for so long and
+why focusing by mirrors (total external reflection), zone plates, and bent
+crystals was preferred instead.
+
+Two important consequences follow directly from $n < 1$:
+\begin{itemize}
+  \item A \textbf{concave} lens acts as a converging lens for X-rays (the
+        opposite of visible light), because the beam bends away from the normal
+        at an interface going from a denser to a less-dense medium.
+  \item There is a \textbf{critical angle} for total external reflection: for
+        incidence angles shallower than
+        $\theta_c \approx \sqrt{2\delta}$, X-rays are totally reflected rather
+        than transmitted.  This limits the maximum useful numerical aperture of
+        a refractive lens.
+\end{itemize}
+
+\paragraph{The Compound Refractive Lens (CRL)}
+Because $\delta$ is so small, a single concave lens has an impractically long
+focal length.  For aluminium at $14\,\mathrm{keV}$,
+$\delta \approx 2.8\times10^{-6}$, giving a single-lens focal length
+%
+\begin{equation}
+  F = \frac{R}{2\delta} \approx 54\,\mathrm{m}
+\end{equation}
+%
+for a hole radius $R = 0.3\,\mathrm{mm}$.  The solution proposed by
+Snigirev~et~al.\ \cite{snigirev1996} is the \textbf{compound refractive lens
+(CRL)}: an array of $N$ identical concave lenses aligned along a common optical
+axis.  The focal length of the compound system is
+%
+\begin{equation}
+  F = \frac{R}{2N\delta},
+  \label{eq:focal}
+\end{equation}
+%
+so stacking 30 lenses reduces the focal length to a manageable $\sim1.8\,\mathrm{m}$.
+% This works because each lens contributes an equal, additive deflection to any
+% ray passing through it, in direct analogy with a stack of weak prisms.  The
+% compound lens can then be treated as a single thin lens obeying the
+% \textbf{Gaussian lens formula}:
+% %
+% \begin{equation}
+%   \frac{1}{p} + \frac{1}{q} = \frac{1}{F},
+%   \label{eq:gauss}
+% \end{equation}
+% %
+% where $p$ is the source distance and $q$ is the image distance.  
+
+The
+diffraction-limited resolution of the lens is
+\begin{equation}
+  \sigma_f = \frac{\lambda\, q}{A},
+\end{equation}
+%
+where $A$ is the effective aperture and $\lambda$ is the X-ray wavelength. Note that the diffraction limited size is not considered by ray tracing.  
+
+\paragraph{Lens Surface Shapes and Aberrations}
+
+The choice of surface profile has a strong effect on focus quality, especially
+at high numerical aperture.
+Spherical lenses are the easiest to manufacture but suffer from severe
+\textbf{spherical aberration}: marginal rays (passing through the lens edge)
+are focused at a different position from paraxial rays (passing near the
+optical axis), producing a large, diffuse focal spot.  X-ray spherical lenses
+are no longer used in practice.
+Parabolic lenses eliminate most spherical aberration and have been the standard
+choice since the late 1990s.  A parabolic profile $z^2 = 2Ry$ closely
+approximates the ideal shape for most beamline configurations, and parabolic
+CRLs routinely achieve micrometre-scale focus sizes. However, the parabola is
+not a perfect focusing surface.
+
+Elliptical lenses are the theoretically ideal surface for focusing a
+\textbf{collimated} beam to a point.  The ellipse is a conic section obtained
+as a special case of the Cartesian oval when the source is at infinity.
+Ray-tracing simulations \cite{sanchezdel2012} show that for nanofocusing
+applications, elliptical profiles outperform parabolic ones not in terms of the
+FWHM of the central peak, but in the \textbf{intensity of the tails}
+surrounding it.  Those tails reduce the peak intensity (and therefore the
+gain), so at large apertures the ellipse is clearly preferred.
+
+The \textbf{Cartesian oval} is the general ideal surface shape for
+\textbf{point-to-point focusing} from a source at finite distance.
+The Cartesian oval is a bi-circular quartic
+curve and reduces to an ellipse (for $n_1 < n_2$, as in X-ray optics) or
+hyperbola (for $n_1 > n_2$, as in visible-light glass optics) when the source
+is collimated.  In high-demagnification nanofocusing geometries, the Cartesian
+oval produces a clean Gaussian focal spot with no tails, while elliptical
+lenses already show some tails and parabolic lenses show significant ones.
+Table~\ref{tab:shapes} summarises the ideal surface choice depending on beam
+and focusing geometry for X-ray optics ($n < 1$).
+
+\begin{table}[h!]
+  \centering
+  \caption{Ideal refractive surface shape for different focusing conditions
+           (X-rays, $n<1$).}
+  \label{tab:shapes}
+  \begin{tabular}{lll}
+    \toprule
+    \textbf{Input beam} & \textbf{Output beam} & \textbf{Ideal surface} \\
+    \midrule
+    Collimated          & Convergent (focused) & Ellipse                \\
+    Convergent          & Collimated           & Hyperbola              \\
+    Divergent           & Convergent           & Cartesian oval         \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+
+\textbf{SHADOW} works for any x-ray lens  simulation, and proceeds as follows.
+\begin{itemize}
+    \item Each ray is propagated in a straight line from the source to the first lens surface.  The coordinates and direction cosines of the ray at the intersection with the surface are calculated analytically (for simple shapes like paraboloids) or numerically (for Cartesian ovals, using a pre-computed surface mesh.
+    \item At every air--material interface, the Snell's law in vector form is applied. This is repeated at every interface of every lens in the array.
+    \item After traversing a path length $l_i$ through the lens material, the electric vectors of the $i$-th ray are affected by absorption  $e^{-\mu_i\, l_i}$, where $\mu_i$ is the linear absorption coefficient at the ray's energy, including photoelectric absorption and Compton scattering.
+\end{itemize}
+
+SHADOW can output the full two-dimensional intensity distribution at any plane, from which one extracts the focused spot size, the effective aperture, or compute chromatic aberrations under polychromatic illumination. Obviously, the effect of upstream optics such as monochromators or mirrors can be included in the simulations. 
+
+The main limitation of geometric ray tracing is the absence of diffraction. For very small focal spots (below $\sim100\,\mathrm{nm}$) or high-NA configurations, diffraction broadening becomes comparable to the geometric spot size and must be added separately, typically by convolving the ray-tracing point-spread function with an Airy disc of diameter $\sim\lambda/\mathrm{NA}$. The ``hybrid" method, that corrects the ray tracing of some deffractive effects is available in OASYS and can be used for that.

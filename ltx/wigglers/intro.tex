@@ -1,0 +1,77 @@
+\subsection{Synchrotron Wiggler Emission: a summary}
+
+Wigglers and short insertion devices (IDs) are increasingly used as photon sources in modern synchrotron facilities, particularly in upgraded storage rings like ESRF-EBS. Unlike undulators, wiggler radiation is \textbf{fully incoherent}, making existing undulator calculation methods inefficient. The model used in SHADOW4 is summarized here.
+
+\subsubsection{Key Assumptions}
+
+The method assumes:
+\begin{enumerate}
+    \item \textbf{Fully incoherent emission}: Radiation from different points along the electron trajectory superimposes incoherently.
+    \item \textbf{Bending magnet approximation}: Emission at each trajectory point equals that of a bending magnet with the same local curvature.
+\end{enumerate}
+
+\subsubsection{Calculation Method}
+
+\textbf{Electron Trajectory Calculation}
+
+%Given a tabulated vertical magnetic field $B_y(z)$, the electron trajectory is computed:
+
+The wiggler magnetic field for a
+conventional wiggler has only a vertical component $(0, 0, B_z)$. Suppose we know a tabulation of $B_z(y)$ (measured or calculated, e.f. sinusoilal).  An
+electron entering in this magnetic field will have a transversal velocity given by the integral of the magnetic field
+
+
+\begin{equation}
+\beta_x(y) = -\frac{c \times 10^{-9}}{E_e[GeV]} \int_{y_0}^{y} B_z(s) \, ds.
+\end{equation}
+
+The electron trajectory is in the horizontal plane and is given
+by the integral of the velocity
+
+\begin{equation}
+x(y) = \int_{y_0}^{y} \beta_x(s) \, ds.
+\end{equation}
+
+Note that in both integrals an additional constant can be added in order to obtain ``centered" profiles. This is discussed in the practical exercise, and it will be whown that an adequate selection of the constant is important to get the radiation centered on axis. 
+
+\textbf{Local Curvature and Critical Energy}
+
+The local curvature (or inverse of the local radius) is also
+calculated, because the local emission corresponds to that of
+a bending magnet of that curvature. It is proportional to the
+second derivative of the trajectory, therefore proportional to $B_z$
+
+\begin{equation}
+R^{-1}(y) = \frac{e}{\gamma m_e c} B_z(y)
+\end{equation}
+
+with $e$ the electron charge, $m_e$ the electron mass and $\gamma$ the
+electron energy in units of $m_e c^2$. Each curvature has associated a bending magnet critical energy given by
+
+\begin{equation}
+E_c(y) = \frac{3}{4\pi} \lambda \gamma^3 R^{-1}(y)
+\end{equation}
+
+\textbf{Wiggler Spectrum Calculation}
+
+The total spectrum $F(E)$ is obtained by:
+\begin{enumerate}
+    \item Calculating bending magnet emission at each $z$ point
+    \item Multiplying by $(R(z)10^{-3})^{-1}$ for arc length conversion
+    \item Accounting for trajectory projection via $\sqrt{1 + (\beta_x(z)/\beta_z(z))^2}$
+    \item Integrating over $z$
+\end{enumerate}
+
+
+\subsubsection{Sampling mechanism}
+
+The rays are obtained by:
+\begin{enumerate}
+    \item Sample the energy
+    \item Sample the position in the trajectory
+    \item Add electron emittance
+\end{enumerate}
+
+\subsubsection{Conclusion}
+
+The presented algorithm provides a fast, accurate method for ray tracing simulations of wigglers and short insertion devices. It efficiently handles the incoherent nature of wiggler radiation and accommodates non-sinusoidal magnetic fields.

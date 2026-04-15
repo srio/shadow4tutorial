@@ -1,0 +1,80 @@
+\subsection{Ray tracing simulations}
+
+\textbf{You will:}
+
+\begin{itemize}
+    \item define an optical system with two mirrors of elliptical section (Kirkpatrick-Baez system) with high demagnification
+    \item verify that this system does not work with circular mirrors (instead of ellipses)
+    \item configure SHADOW to calculate automatically the ellipse parameters
+    \item learn the impact of the ``optical element orientation angle" and use of the ``Empty Element" widget to undo the rotations
+    \item study the degradation of the focal spot when introducing surface errors (slope errors) using DABAM
+\end{itemize}
+
+\textbf{Questions:}
+
+Study the case based on the KB at the ESRF-ID21 beamline. 
+It has a large demagnification (the KB is at about 50 m from source and the focal position is at roughly 0.1 m, thus demagnification of $1/M\approx$ 500).
+
+The exact position of the elements are in the Tables.
+
+Mirror dimensions: VFM: length=47 mm and width=20 mm. VFM: length=90 mm and width=20 mm. Use 25000 rays. Do not include the mirror reflectivity.
+
+
+\begin{table}[h]
+\caption{Distances for all optical elements.}
+\centering
+\begin{tabular}{clrrrr}
+    \hline
+    OE & Type & $p$ [m] & $q$ [m] & src--OE [m] & src--screen [m] \\
+    \hline
+    1 & SCR/SLIT/ABS &  51.0000 & 0.0000 & 51.0000 & 51.0000 \\
+    2 & Mirror       &   0.5000 & 0.0575 & 51.5000 & 51.5575 \\
+    3 & Mirror       &   0.0325 & 0.0600 & 51.5900 & 51.6500 \\
+    \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\caption{Focusing elements with design distances and magnification.}
+\centering
+\begin{tabular}{clrrr}
+    \hline
+    OE & Shape & $p_\mathrm{foc}$ [m] & $q_\mathrm{foc}$ [m] & $1/M$ \\
+    \hline
+    2 & Elliptical cylinder & 51.50 & 0.15 & 343.33 \\
+    3 & Elliptical cylinder & 51.59 & 0.06 & 859.83 \\
+    \hline
+\end{tabular}
+\end{table}
+
+
+\textbf{Hints:} Hint: you may use the workspace file {\tt kirkpatrickbaez.ows}. 
+
+
+\textbf{Answer}
+
+In the workspace there are several branches with different options:
+
+The first branch corresponds to the typical KB with elliptical mirrors. Several important aspects must be highlighted:
+\begin{itemize}
+    \item The first mirror has $\alpha$=0 (VFM, facing up), and the second has $\alpha$=90$^{circ}$ (HFM, facing laterally).  As discused in section~\ref{sec:reference_frame}, the rotation imply the rotation of the axes, thus, for mirror 2, the display (X,Z) corresponds to (vertica,Horizontal) directions. The ``Plot XY" widget, displays columns (3,1) to see the plot as in real life.
+    \item The mirror figure is Ellipsoidal (we start with shape with revolution symmetry around $y$), but then we select ``Cylindrical=Yes" to make a ``cylinder", i.e. to flat one direction. The surface is flat is along $x$ (thus the cylinder axis has an angle 0 with $x$).
+    \item we tell SHADOW to compute the ellipse parameters (``internal/calculated"). The foci and ``continuations planes" (CP) are ``Different", because the focal points are not in the CPs. The calculated values can be displayed with the ``Info" widget, in the OE Info tab.
+\end{itemize}
+
+
+
+Second branch corresponds to the KB with circular (cylindrical) mirrors. The aberrations are enormous and cannot be used in real world. 
+
+The third branch considers the reflectovity of the mirrors (coated with Ni). It also shows a ``trick" to reverse the axes: use an ``Empty Element" without change in the incidence direction (incident angle zero, output angle 180$^{circ}$) and ``undo" the 90 deg rotation, that means setting $\alpha=-90=270$ deg. The resulting spot is very small (~20 nm $\times$ 20 nm).
+
+The 4$^\text{th}$ branch shows the effect of slope errors. We use for that the ``DABAM" widget available from the SYNED add-on. Select the profile 63 and 62 for the VFM and HFM, respectively.  Set a reasonable file name for the output (e.g. {\tt kb\_vfm.hdf5} and {\tt kb\_hfm.hdf5}). Process clicking sequentially ``retrieve profile", ``Generate Height Profile File" and connect to the mirror widget.
+Note that using a mesh file requires setting the mirror dimensions to lengths smaller those sampled in the height profile widget. If dimensions are not set, you will be proposed to accept the one calculated automatically. 
+
+
+\begin{figure}[H]
+\label{fig:kb-fig1}
+\caption{Intensity distribution at the focal plane produced by the KB. Left: ideal surfaces without slope errors. Right: using slope errors from measured data (DABAM library) (0.91 $\mu$rad r.m.s. for VFM and 0.51 for HFM).}
+\includegraphics[width=0.49\textwidth]{kirkpatrick-baez/fig1a.png}
+\includegraphics[width=0.49\textwidth]{kirkpatrick-baez/fig1b.png}
+\end{figure}

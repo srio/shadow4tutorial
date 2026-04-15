@@ -1,0 +1,53 @@
+
+
+\subsection{Basics of crystal optics}
+
+In a perfect crystal, diffraction is governed by \textbf{dynamical theory}. Unlike mosaic crystals, a perfect crystal reflects nearly $100\%$ of incident radiation within a specific angular range known as the \textbf{Darwin Width} ($w_D$). This is the intrinsic angular width of the reflection curve for a perfect crystal. It is typically on the order of arcseconds (a few microradians) for hard X-rays.
+
+The reflection profile (or rocking curve) typically exhibits an asymmetric "flat-top" shape. 
+
+\paragraph{The Double-Crystal Monochromator (DCM)}
+The standard synchrotron setup uses two parallel crystals. This \textbf{parallel $(+, -)$ geometry} is preferred for two reasons:
+i) \textbf{Beam Stability:} The second crystal restores the beam direction to be parallel to the incident beam, providing a constant vertical offset, and 
+ii) \textbf{Harmonic Rejection:} By slightly "detuning" the second crystal (rotating it by a few microradians), higher-order harmonics ($2\lambda, 3\lambda$) are suppressed because their Darwin widths are significantly narrower than the fundamental.
+
+\paragraph{Configurations: $(+, -)$ vs. $(+, +)$}
+These configurations describe the relative orientation of the crystals and their dispersive power.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}lll p{6cm}@{}}
+\hline
+\textbf{Config.} & \textbf{Geometry} & \textbf{Type} & \textbf{Effect} \\
+\hline
+$(+, -)$ & Parallel & Non-dispersive & High intensity; energy resolution $\Delta E/E$ is coupled to source divergence. \\
+$(+, +)$ & Anti-parallel & Dispersive & High energy resolution; $\Delta E/E$ is decoupled from source divergence but intensity is lower. \\
+\hline
+\end{tabular}
+\caption{Comparison of Monochromator Configurations}
+\end{table}
+
+\begin{figure}[H]
+\label{fig:dcm-fig1}
+\caption{Double crystal configurations a) (+,-) where all rays accepted by the first crystal are also accepted (same angle) at the second crystal; b) (+,+) where the out of axis rays on the first crystal are incident at different angles on the second crystal.}
+\includegraphics[width=0.99\textwidth]{double-crystal-monochromator/fig1.png}
+\end{figure}
+
+
+\paragraph{The DuMond Diagram and the Source}
+The DuMond diagram plots wavelength ($\lambda$) against angle ($\theta$). The source is represented as a broad rectangle defined by its spectral range ($\Delta\lambda_s$) and angular divergence ($\Delta\theta_s$).
+
+In the $(+, -)$ case, the Bragg bands for both crystals have the same slope:
+\begin{equation}
+\frac{d\lambda}{d\theta} = 2d \cos\theta
+\end{equation}
+Because the slopes are identical, they overlap over a large area within the source window. This results in high flux but makes the energy resolution dependent on the source's angular spread.
+
+In the $(+, +)$ case, the second crystal has a negative slope relative to the first. The two bands intersect like an "X." The resulting monochromatic beam is defined only by the tiny diamond-shaped intersection of the two bands. This configuration effectively "ignores" source divergence to produce a highly monochromatic beam.
+
+
+\begin{figure}[H]
+\label{fig:dcm-fig2}
+\caption{Du Mond diabgrams for a) (+,-) configuration, and b) (+,+) configuration. J. W. M., DuMond, Phys. Rev. 52, 1937, 872-883. }
+\includegraphics[width=0.99\textwidth]{double-crystal-monochromator/fig2.png}
+\end{figure}

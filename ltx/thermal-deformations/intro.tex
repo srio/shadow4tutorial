@@ -1,0 +1,26 @@
+\subsection{Deformations due to heat load}
+
+
+Synchrotron radiation sources produce extremely intense beams of photons across a broad spectrum, and managing the \textbf{heat load} deposited by this radiation is one of the central engineering challenges in beamline design.
+
+Heat load refers to the power deposited by the synchrotron radiation beam onto optical components such as masks, slits, absorbers, monochromators, and mirrors. Modern storage rings and especially fourth-generation sources (such as EBS at ESRF, APS-U, or SPring-8-II) produce beams with total powers ranging from \textbf{hundreds of watts to tens of kilowatts}, concentrated into very small footprints.
+
+The critical parameter is not just total power but also the peak power density: the power per unit area that strikes an optical surface.
+
+
+\paragraph{Overview of the Simulation Loop}
+
+The simulation pipeline follows this chain:
+
+\begin{itemize}
+    \item {Source power spectrum calculation OASYS/XOPPY
+    \item Profile of incident power on the optical element (taken into account the effect of the elements upstream of it)
+    \item Temperature field (FEA)
+    \item Surface deformation (FEA)
+    \item Extract main parameters of deformation (e.q. maximum slope error)
+    \item Iteration and optimization of the main parameters (cooling, dimensions, shapes) using FEA
+    \item Extract FEA-calculated surface for ray tracing verification of the optical effect of the residual deformations
+    \item Optical output (flux, focus, resolution)
+\end{itemize}
+
+In this chapter we study for a monochromator crystal the broadening of the energy distibution due to the surface deformation and the image spot profile degraded by thermal deformation.

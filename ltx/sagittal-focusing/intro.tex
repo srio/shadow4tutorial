@@ -1,0 +1,91 @@
+\subsection{Crystal monochromator with sagittal focusing}
+
+Bending the second crystal in a double-crystal monochromator is an efficient 
+method of increasing the photon flux density at bending-magnet and wiggler 
+beamlines \cite{Sparks1980,Sparks1982}. In this scheme, sagittal focusing is 
+applied at the second crystal, whose radius of curvature is given by the 
+Coddington equation:
+
+\begin{equation}
+    R_s = \frac{2\, p\, q \sin\theta_B}{p+q}
+\end{equation}
+
+\noindent where $p$ and $q$ are the source-to-crystal and crystal-to-focus 
+distances, respectively, and $\theta_B$ is the Bragg angle corresponding to 
+the selected photon wavelength $\lambda$, related to the crystal d-spacing $d$ 
+by Bragg's law ($\lambda = 2d\sin\theta_B$).
+
+Despite its efficiency, sagittal focusing with a bent crystal presents several 
+practical challenges:
+
+\begin{itemize}
+    \item \textbf{Variable curvature requirement.} The required radius of 
+    curvature changes with the Bragg angle, necessitating a dynamical bender 
+    capable of continuously adjusting $R_s$ during an energy scan.
+
+    \item \textbf{Extreme bending radii.} The required radii can range from 
+    approximately 1 to 5~m, placing stringent demands on the mechanical design 
+    and stability of the bender.
+
+    \item \textbf{Angular mismatch between crystals.} Sagittal bending 
+    introduces a mismatch in the ray angles seen by the first and second 
+    crystals, reducing the effective reflectivity. This loss can be mitigated 
+    by optimizing the position of the monochromator along the beamline. It has 
+    been shown that a demagnification ratio of $p:q = 3:1$ minimizes the 
+    angular mismatch and maximizes reflectivity \cite{Sparks1980}.
+
+    \item \textbf{Anticlastic bending.} Bending the crystal in the sagittal 
+    direction induces a parasitic curvature in the tangential (diffraction) 
+    direction, known as anticlastic bending. This introduces aberrations and 
+    reduces the focusing efficiency. A common mitigation strategy is to machine 
+    a set of ribs into the crystal, whose dimensions and spacing are optimized 
+    for the target configuration. However, the ribs can also produce a 
+    segmented sagittal profile that deviates from the ideal cylindrical shape, 
+    introducing additional aberrations.
+\end{itemize}
+
+
+Pure bending of even thin rectangular plates (thickness $\ll$ radius of curvature $R_s$) results in a transverse curvature of the plate with radius $R_m$ by \cite{Sparks1982}
+\begin{equation}
+    R_m = -\frac{R_s}{\sigma_P},
+\end{equation}
+with $\sigma_P$ the Poisson ratio ($\approx$ 0.21 for isotropic silicon).
+
+
+
+% \subsection{Crystal monochromator with sagittal focusing}
+
+
+% Focusing by bending a crystal in a double-crystal monochromator
+% % (Sparks et al., 1980, 1982)
+% can be an efficient method of increasing the flux density at bending-magnet and wiggler beamlines. Sagittal focusing is used at the second crystal in a double crystal monochromator. This scheme encounters some difficulties:
+
+% \begin{itemize}
+%     \item is necessary to design a dynamical bender to change the curvature radius when changing the incidence (Bragg angle) of the monochromator
+%     \item The radii can be quite extreme (5 to 1 m radius of curvature) and so careful mechanical design of the crystal
+%     \item the bending produces a mismatch of the rays angles between the first and second crystals, thus reducing the reflectivity. To mitigate this loss of reflectivity, the position of the monochromator in the beamline can be optimized. It is found that a demagnification of 3 (i.e $p:q=3:1$) minimizes the difference of the incidence angle between the first and second crystal, and optimizes reflectivity  \cite{Sparks1980}.
+%     \item the intense bending in the sagittal direction introduces an expureous (anticlastic) curvature in the tangential direction (the diffraction plane) that causes undesirable aberrations and the loss of photon flux in sagittal focusing.
+%     To avoid anticlastic bending, the crystal can be produced with a set of ribs with dimensions and period being optimised for different configurations.
+%     However, these ribs may also produce a segmented profile along the sagittal direction, that separates from the ideal circular profile and introduces aberrations
+% \end{itemize}
+
+% The radius of curvature given by the Coddington equations:
+% \begin{equation}
+%     R_s = \frac{2 p q \sin\theta_B}{p+q}
+% \end{equation}
+% with $p,q$ the distances source-crystal and crystal-focus, respectively, and $\theta_B$ the Bragg angle needed to diffract at given photon wavelength $\lambda$, given by the Bragg law ($\lambda=2 d \sin\theta_B)$, $d$ is the crystal d-spacing.) 
+
+
+
+% % (e.g. Borsboom et al., 1998; Bilsborrow et al., 2006; Koshelev et al., 2009; Nomura & Koyama, 1999; Yoneda et al., 2005). 
+
+
+% % The anticlastic bending of the second crystal (Sparks et al., 1982; Kushnir et al., 1993) leads to a technical difficulty in controlling the sagittal radius of curvature and the parallelism between the first and second crystals within the Darwin width. The anti-clastic bending causes undesirable aberrations and the loss of photon flux in sagittal focusing. 
+
+% % Various solutions have been proposed to minimize anticlastic bending, such as by using a ribbed (Borsboom et al., 1998; Bilsborrow et al., 2006), hinged or slotted crystal (e.g. Sparks et al., 1982; Kushnir et al., 1993; Schulze et al., 1998; Yoneda et al., 2001; Feng et al., 2008; Koshelev et al., 2009) with various types of bend mechanism for bending-magnet, wiggler and undulator beamlines.
+
+% % The magnitude of anticlastic bending depends on the aspect ratio of a rectangular crystal. The anticlastic bending at the center of a crystal is minimized at the ‘golden value’ of 1.42 (Kushnir et al., 1993), which is the ratio for a rectangular Si(111) focusing crystal with ‘clamped’ or ‘built in’ boundary conditions (Kushnir et al., 1993; Quintana et al., 1995).
+
+% % To achieve two-dimensional fine focusing, one solution is to ensure that the bent crystal maintains a continuous cylindrical shape over a wide area of the crystal. Nisawa et al  designed a Si(111) rectangular slotted crystal with thick and wide stiffening wings, the so-called ‘winged crystal’.
+
+

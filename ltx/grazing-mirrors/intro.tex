@@ -1,0 +1,104 @@
+\subsection{Focusing with grazing incidence mirrors }
+
+\noindent
+For a mirror at grazing incidence, let $\theta$ be the \textbf{glancing angle}
+(complement of the angle of incidence $\gamma$, i.e.\ $\theta = 90^\circ - \gamma$),
+$R$ the radius of curvature, and $p$, $q$ the source-mirror and mirror-object distances.
+
+In the case of normal incidence, the lens equation can be used to calculate the mirror $R$
+\begin{equation}
+    \frac{1}{p} + \frac{1}{q} = \frac{2}{R}
+\end{equation}
+
+In case of grazing incidence, the $R$ differs if we want to focus in the tangential (or meridional) plane (the plane that contains the source, mirror center and image center), or the sagittal plane (perpendicular to th emeridional one).  
+
+\paragraph{Tangential (meridional) plane:}
+\begin{equation}
+    \frac{1}{p} + \frac{1}{q} = \frac{2}{R_t \sin\theta}
+\end{equation}
+
+\paragraph{Sagittal plane:}
+\begin{equation}
+    \frac{1}{p} + \frac{1}{q} = \frac{2\sin\theta}{R_s}
+\end{equation}
+
+
+The ratio of the two radii is :
+\begin{equation}
+    \frac{R_s}{R_t} = \sin^2\theta
+\end{equation}
+
+\noindent
+At small glancing angles ($\theta \ll 1$), a spherical mirror $R_t=R_s=R$ will produce a tangential focus is much closer to the mirror than the sagittal focus, leading to large astigmatism.
+
+\paragraph{Toroidal Mirror --- Stigmatic Condition}
+
+A toroidal mirror with tangential radius $R_t$ and sagittal radius $R_s$ can
+eliminate astigmatism. Since $\sin^2\theta \ll 1$ for grazing incidence, the sagittal radius must be much smaller than the tangential radius: $R_s \ll R_t$.
+
+\paragraph{Mirror shapes for point-to-point focusing}
+
+Mirrors shaped as elliptical cylinders and as ellipsoids of revolution are obvious choices for many applications as the two-dimensional and three-dimensional surfaces of exact point-to-point imaging.
+
+Paraboloidal cylinders and paraboloids of revolution can be regarded as a special case of an ellipse with one conjugate equal to infinity.
+
+Note that a perfect (on-axis) point-to-point focusing does not mean aberration free. Indeed, the Abbe sine condition is a requirement that a optical system must satisfy to form a stigmatic (aberration-free) image of an off-axis point, not just an on-axis point. It is a known result in Optics that a single reflection surface cannot verify the sine condition. At least two reflections are needed. 
+
+If the sine condition is satisfied, the system is free of coma (to all orders) for that object point. 
+If it is violated, off-axis rays focus at different heights than paraxial rays — this is coma.
+A system that satisfies both the sine condition and forms a perfect axial image (no spherical aberration) is called aplanatic.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\paragraph{Critical Angle for X-ray Reflection: Fresnel Equations}
+
+
+\noindent
+For X-rays, the refractive index of matter is slightly less than unity:
+\begin{equation}
+    n = 1 - \delta + i\beta
+\end{equation}
+where $\delta \sim 10^{-5}$--$10^{-6}$ is the refractive index decrement and $\beta$
+accounts for absorption. With $n_1 = 1$ (vacuum) and $n_2 = n$, the Fresnel
+reflection coefficients for $s$ (TE) and $p$ (TM) polarizations, expressed in
+terms of the glancing angle $\alpha$, are:
+
+\begin{align}
+    r_s &= \frac{n_1 \sin\alpha - \sqrt{n_2^2 - n_1^2\cos^2\alpha}}
+               {n_1 \sin\alpha + \sqrt{n_2^2 - n_1^2\cos^2\alpha}} \\[8pt]
+    r_p &= \frac{n_2^2 \sin\alpha - \sqrt{n_2^2 - n_1^2\cos^2\alpha}}
+               {n_2^2 \sin\alpha + \sqrt{n_2^2 - n_1^2\cos^2\alpha}}
+\end{align}
+
+\noindent
+Since $n_2 \approx 1$ for X-rays, $r_s \approx r_p$ and polarization is
+essentially irrelevant. Both reduce to the same expression governed by the
+quantity:
+
+\begin{equation}
+    Q \equiv \sqrt{n_2^2 - \cos^2\alpha}
+           = \sqrt{\sin^2\alpha - 2\delta + 2i\beta}
+\end{equation}
+
+where the second form uses $n_2^2 \approx 1 - 2\delta + 2i\beta$ and
+$n_1 = 1$.
+
+Setting $\beta = 0$, total external reflection occurs when the real part of $Q$
+vanishes and the refracted wave becomes evanescent:
+
+\begin{equation}
+    \sin^2\alpha_c = 2\delta
+\end{equation}
+
+\noindent
+For small glancing angles ($\sin\alpha_c \approx \alpha_c$) this gives:
+
+\begin{equation}
+    \boxed{\alpha_c = \sqrt{2\delta}}
+\end{equation}
+
+For $\alpha < \alpha_c$, $Q$ is  purely imaginary and reflectivity (for non-absorbing mirrors or $\beta$=0) is $1$ (total reflection). 
+

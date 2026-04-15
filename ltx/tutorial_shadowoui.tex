@@ -1,0 +1,1175 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[unicode=true]{hyperref}
+\hypersetup{
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{longtable,booktabs}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+\date{}
+
+\begin{document}
+
+Tutorials on computer simulations for X-ray optics
+
+Part II: TUTORIALS on ray tracing with ShadowOui
+
+Manuel Sanchez del Rio, ESRF, Grenoble (France)
+
+\href{mailto:srio@esrf.eu}{\nolinkurl{srio@esrf.eu}}
+
+(last updated 2016-01-13)
+
+These tutorials consist on a set of examples of different practical
+cases to be run using ShadowOui, the Oasys User Interface for SHADOW.
+
+\begin{itemize}
+\tightlist
+\item
+  11 - Geometrical source. Learning reference frames
+\item
+  12 - Synchrotron sources: Bending magnets
+\item
+  13 - Insertion devices
+\item
+  14 - Beam propagation (phase space (z,z') ellipses)
+\item
+  15 - Focusing with grazing incidence mirrors: effect of aberrations
+\item
+  16 - Kirkpatrick-Baez system
+\item
+  17 - Double crystal monochromator
+\item
+  18 - Sagittal focusing - python script
+\item
+  19 - Simulation of a complete beamline
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  20 - Slope errors
+\item
+  21 - Thermal bump
+\item
+  22 - Curved crystal monochromators: Rowland and off-Rowland
+  configurations
+\item
+  23 - Crystals in Laue geometry
+\item
+  24 - Transfocators
+\item
+  25 - Fresnel propagator
+\item
+  26 - Two slits experimnt - python scripts
+\item
+  27 - More examples
+\end{itemize}
+
+Appendix -- The very basics of SHADOW
+
+\begin{itemize}
+\tightlist
+\item
+  1 - SHADOW Introduction
+\item
+  2 - SHADOW files
+\item
+  3 - SHADOW frame
+\item
+  4 - Effect of optical element orientation in SHADOW frame
+\item
+  5 - Script programming (python): Survival guide
+\item
+  6 - Resources
+\end{itemize}
+
+\section{Learning reference frames in SHADOW using a geometrical
+source.}\label{learning-reference-frames-in-shadow-using-a-geometrical-source.}
+
+You will:
+
+\begin{itemize}
+\tightlist
+\item
+  learn to define geometrical sources
+\item
+  understand the use of a python script for modifying an existing source
+\item
+  understand reference frames
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi})}
+\tightlist
+\item
+  Create a collimated (i.e., zero divergence) geometric source with
+  elliptical shape with vertical semi axis twice the horizontal semi
+  axis (e.g., 0.2 cm and 0.1 cm in Z and X, respectively). Visualize it
+\item
+  Apply a python script that received the source and keeps only the rays
+  with positive values of X and Z (i.e., sets the flag as ``lost'' for
+  rays with negative values of X and Z), and resend the beam. Visualize
+  the new result after this modification of the beam.
+\item
+  Create a mirror optical element, with incident angle 45 deg, and
+  p=q=1m. Trace the system in two cases, with Mirror orientation angle 0
+  and 90 degrees. Verify the results with the pictures shown before.
+\end{enumerate}
+
+Hints: you may load the workspace ex11\_referenceframe.ows.
+
+Answer
+
+Pay attention to make plots using ``Rays: Good Only'' and same aspect
+ratio (click the blue octagon in )
+
+Source (x,z) plane before and after applying the script that select only
+``positive'' rays
+
+a) Mirror orientation angle = 0
+
+Left: footprint (Y,X) plane. Right: image (X,Z) plane
+
+b) Mirror orientation angle = 90 deg
+
+Left: footprint (Y,X) plane. Right: image (X,Z) plane:
+
+\section{Synchrotron sources: Bending
+magnets.}\label{synchrotron-sources-bending-magnets.}
+
+You will learn to
+
+\begin{itemize}
+\tightlist
+\item
+  simulate bending magnets
+\end{itemize}
+
+i) Simulate the source for the ESRF bending magnet (full emission) at a
+fixed energy (e.g.,. 8 keV). Use one mrad of horizontal divergence.
+Visualize the cross section (x,z), the divergence space (x',z'), the
+phase spaces (x,x') and (z,z'). Visualize the top view (y,x). Make
+histograms of intensity (total, -polarized and -polarized) as a
+function of the vertical divergence. Plot also the degree of circular
+polarization (S3 component of the Stokes vector).
+
+ii) Change the source energy to 18 keV and compare the plot f intensity
+versus vertical divergence with the result at 8 keV. Verify that the
+radiation is more collimated. Simulate the same source but on a limited
+vertical divergence (e.g., +/- 50 rad).
+
+Hints: you may load the workspace ex12\_bendingmagnet.ows, where this
+system is defined, for full vertical emission.
+
+Notes:
+
+By default one can use Calculation Mode = Precomputed, and select an
+``infinite'' \emph{Max vertical half-divergence} (we set to 1 rad which
+contains everything that is radiated). Shadow will calculate rays
+following the full emission. In case that one wants to work very far
+from the critical energy (like for infrared beamlines), one should use
+``Exact Calculation''. In this case, the \emph{Max vertical
+half-divergence }should be larger than the natural full divergence but
+not much larger. For example, in this case one can set 0.001: 1 mrad is
+still much larger than the full vertical emission (\textasciitilde{}200
+mrad).
+
+Answer
+
+i)
+
+Open the ``Bending Magnet'' widget, click ``Run Shadow/Source'' and
+display in the right panel using ``Detailed Plot'' the cross section
+(x,z), the divergence space (x',z'), and phase spaces (x,x'), (z,z'):
+
+Another way is to plug a ``Plot XY'' widget and select the wanted
+coordinates for the plot. This can also be used to display the ``top
+view'' (y,x).
+
+Plug the ``Histogram'' widget to display histograms of intensity
+weighted by 23:Total Intensity, 24:-polarized, 24: -polarized,
+S3-Stokes or circular polarization). Although it is not possible to
+combine histograms in a single plot, it is always possible to prepare a
+simple script that performs customized plots, like the one included in
+the workspace that produces:
+
+\section{Insertion devices}\label{insertion-devices}
+
+You will learn to
+
+\begin{itemize}
+\tightlist
+\item
+  Simulate wigglers and undulators
+\end{itemize}
+
+a) Simulate the old wiggler for the ESRF ID17 (medical beamline) the
+energy interval 10000±10 eV . Calculate the total horizontal divergence
+(width of the x' histogram) and visualize a top view of the emission
+(y,x) with finite emittance and source size, and without emittances
+(i.e., setting emittances and sigma's to zero).
+
+b) Simulate the ESRF U46 undulator with gap tunned to have its third
+harmonic at 7833.5 eV. Use Gaussian approximation and understand the
+parameters.
+
+Hint: you may use the workspace file ex13\_insertiondevices.ows
+
+Answer
+
+a)
+
+\begin{longtable}[]{@{}@{}}
+\toprule
+\tabularnewline
+\tabularnewline
+\bottomrule
+\end{longtable}
+
+Plot of X versus Y for the wiggler with (left) and without (right)
+emittances
+
+b)
+
+Use the ``Undulator Gaussian'' widget and input the corresponding
+parameters for the \emph{electron beam} and \emph{photon energy}. This
+application will create a source using the Shadow Geometrical source
+with divergences and sizes corresponding to the \emph{photon beam}.
+These values or the photon beam (S,S') comes from a convolution (sum in
+quadrature) of the values for the electron beam (s\textsubscript{e
+}s\textsubscript{e}' ) with the values corresponding to the photon
+emission of a single electron beam ( s\textsubscript{g},
+s\textsubscript{g}') and wavelength l=1.58274326 A (7833.5 eV), and
+undulator length L=1.65 m .
+
+The formulas used are (Onuki \& Elleaume: Undulators, Wigglers and their
+applications, CRC press, 2002):
+
+In our case:
+
+\begin{longtable}[]{@{}@{}}
+\toprule
+\tabularnewline
+\tabularnewline
+\tabularnewline
+\bottomrule
+\end{longtable}
+
+These values can be checked in the ``Source Info'' available using the
+``Info'' widget.
+
+Plot of the divergence space (X',Z') for the undulator.
+
+\section{Beam propagation (phase space (z,z')
+ellipses)}\label{beam-propagation-phase-space-zz-ellipses}
+
+You will learn to
+
+\begin{itemize}
+\tightlist
+\item
+  Define screens and slits associated to optical elements
+\item
+  Learn about the phase space changes when the beam propagates
+\item
+  ``Optimize the source'' in the sense shadow will only store rays that
+  enter in a defined aperture
+\end{itemize}
+
+a) Using the created bending magnet source (example 12) add several
+screens at 0 (source position), 50, 75 and 100 cm from the source. See
+the tilt of the (z,z') diagram.
+
+b) Define an aperture (20 m×20 m) in the first screen and see its
+effect in screens \#2 and \#3. Use
+
+Hints: You may use the workspace files ex14a\_beampropagation.ows. It
+also, contains the system with slit, but using an optimised source in
+order to avoid losing most of the rays at the slit.
+
+Answer
+
+a)
+
+\protect\hypertarget{anchor-2}{}{}0cm 50cm
+
+75cm 100cm
+
+Note that instead of defining the different screens, one can directly
+plug a ``Plot XY'' to the source and widget and use ``Position of the
+image'' = Retraced and play with the distances.
+
+b)
+
+75cm 100cm
+
+\section{Focusing with grazing incidence mirrors: effect of
+aberrations.}\label{focusing-with-grazing-incidence-mirrors-effect-of-aberrations.}
+
+You will learn to
+
+\begin{itemize}
+\tightlist
+\item
+  Use different mirror shapes in SHADOW
+\item
+  Experience with the automatic calculation of the mirror parameters.
+\item
+  Include mirror reflectivity by using the ``prerefl'' preprocessor
+\item
+  Visualize results using contour curves.
+\end{itemize}
+
+Create a geometrical source with Gaussian shape (\textsubscript{x}=57
+m, \textsubscript{z}=10.4 m) and Gaussian divergence
+(\textsubscript{x'}=88.5 rad and \textsubscript{z'}=7.2 rad) to
+simulate the emission of an ESRF 1.65 m undulator at 10 keV in a Low
+beta section.
+
+a) Study the case of different mirror shapes (spherical, toroidal and
+ellipsoidal) for focusing the source with distances (p,q)=(30m,10m)
+(magnification 1/3) and (30m,1m) (magnification 1/30). Set the grazing
+angle to 2 mrad. Study the effect of the spherical aberrations and its
+influence depending on the magnification factor.
+
+Study the dependence on mirror dimensions and incident angle.
+
+b) Enter the effect of mirror reflectivity. Consider a Rh (=12.4
+g/cm\textsuperscript{3}) coating and a source with energy distribution
+in 5-45 keV (box-distribution). Visualize the results. Plot also the
+intensity versus energy.
+
+Hints. For the different mirrors, Shadow can calculate the surface
+parameters (curvature radii, ellipse axes, etc). by selecting the
+parameters in Basic Settings → Surface Shape → Type =
+``internal/calculated'' . The resulting mirror parameters can be seen
+using the ``MirInfo'' tab from the ``Info'' widget. For including
+reflectivity, the preprocessor PreRefl must be used. The workspace file
+ex15a\_aberrations.ows contains this exercise.
+
+Answer
+
+a) The aberrations effect increases if
+
+\begin{itemize}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \item
+    \begin{enumerate}
+    \def\labelenumii{\roman{enumii})}
+    \tightlist
+    \item
+      one goes to more grazing angle
+    \item
+      one reduces the magnification factor (i.e., mode demagnification
+      of the source)
+    \item
+      one uses larger mirrors. Small mirrors reduce aberration because
+      cut rays which arrive far from the mirror center. Obviously, this
+      effect reduces also the intensity. For analysing that, use the
+      Basic Settings-\textgreater{}Dimensions-\textgreater{}Limits Check
+      entry.
+    \end{enumerate}
+  \end{enumerate}
+\end{itemize}
+
+M=1/3 Toroidal: 43 mm x 26 mm FWHM, Ellipsoidal 40 mm x 9 mm
+
+M=1/30 Toroidal: ? mm x 39 mm FWHM, Ellipsoidal 2.4 mm x 1.6 mm. Note
+that a graph type ``preview'' has bee used to better observe the
+aberration tails produced by the toroidal mirror.
+
+b) I(E) plot.
+
+\section{Kirkpatrick-Baez system}\label{kirkpatrick-baez-system}
+
+You will learn to
+
+\begin{itemize}
+\tightlist
+\item
+  define an optical system with two mirrors either of circular or
+  elliptical section
+\item
+  tell SHADOW to calculate automatically the mirror parameters in the
+  case that focal planes are not coincident with continuations planes
+\item
+  lear the impact of the ``mirror orientation angle''
+\item
+  define mirror dimensions
+\end{itemize}
+
+Study the case of the previous exercise (M=1/30) with a Kirkpatrick-Baez
+system with cylindrical (and later with elliptical) mirrors of length=40
+cm and width=4 cm. Distance source-M1=29.5m; Distance M1-M2=1m; Distance
+M2-spot=9.5m. Use 25000 rays. Do not include the mirror reflectivity.
+
+Hint: you may use the workspace file ex16a\_kb.ows.
+
+Answer
+
+First branch corresponds to the KB with circular (cylindrical) mirrors.
+Note that the image plane displays (X vs Z) in the ``Plot XY'' widget,
+corresponding to the horizontal (Z) and vertical (X) directions. Note
+that these directions are swapped respect to the source because the
+mirror orientation angle for the second mirror is 90 degrees. The mirror
+parameters are input externally R(M1)=739455.7 cm and R(M2)=691710.4 cm.
+The Resulting spot is 36 mm x 8.3 mm. The second branch corresponds to
+the KB with elliptical mirrors, where the ellipse parameters are
+calculated internally. (check them using MirInfo) The Resulting spot is
+\textasciitilde{}31 mm x 7 mm. A third branch uses the widget for the
+compound element ``Kirkpatrick-Baez Mirror'' which reproduces the
+elliptical KB setup in a simpler way. This branch also implements a
+trick useful in some cases: if one wants to reverse the axes to come
+back to X in horizontal and Z in vertical is possible to use an ``Empty
+Element'' with incident angle zero, output angle 180 deg and mirror
+orientation angle 90 deg.
+
+\section{Double crystal monochromator.
+}\label{double-crystal-monochromator.}
+
+You will learn to
+
+\begin{itemize}
+\tightlist
+\item
+  create crystal reflectivity data using the ``bragg'' preprocessor
+\item
+  use the ``autotunning'' facility to align the crystal
+\item
+  calculate the energy resolution for a crystal and a combination of
+  systems
+\item
+  optimise the source bandwidth
+\item
+  play with the mirror orientation angle. Relate its values to the
+  crystal dispersion ( (+,-) and (+,+) crystal combination)
+\end{itemize}
+
+Create a bending magnet source (starting from exercise 12) at 8000±25 eV
+with 3 mrad horizontal divergence. Verify its energy dependence and
+horizontal and vertical divergence values.
+
+a) Implement a flat Si 111 crystal at 30 m from the source. Verify the
+energy dependence and calculate resolution. Redefine the source energy
+bandwidth to optimize the calculation in order to obtain the energy
+dependence with the highest signal.
+
+b) Add a second crystal 10 cm downstream from the first one in (+,-) and
+(+,+) configurations (play with the mirror orientation angle). Explain
+the obtained differences in energy resolution.
+
+Hint: you may use the workspace file ex17\_crystalmono.ows containing
+three branches: i) (+,-) ii) (+,+), and iii) the double crystal
+monochromator compound element (same as (+,-). Use the Bragg
+preprocessor to create the reflectivity data for a Si 111 crystal. You
+can create the output file for a large range of energy (e.g., from 5000
+to 15000 eV). Pay attention to the file name when you run bragg, because
+it also appears in the o.e. crystal menus. In this case, the file is
+called si5\_15.111.
+
+Answer
+
+a) The optimized energy range selected is 8000±10 eV. The histogram of
+the energy (including reflectivity) after the first crystal has
+FWHM\textasciitilde{}5.6eV:
+
+b) Left: resolution function for (+,-) (non-dispersive configuration).
+Here the mirror orientation angles are 0 and 180 deg for the first and
+second crystals, respectively. Note that the width (5.2 eV) is very
+similar to a single crystal in a), but with a slightly lower intensity
+due to the absorption of the second crystal. Right: resolution function
+for (+,+) (dispersive configuration). The mirror orientation angle is 0
+for both crystals. Here one can see the effect of the dispersive setup,
+the final energy resolution depends only on the crystal Darwin width and
+does not depend on the beam divergence.
+
+\section{Sagittal focusing - python
+script}\label{sagittal-focusing---python-script}
+
+You will learn to
+
+\begin{itemize}
+\tightlist
+\item
+  define a cylindrical mirror for sagittal focusing
+\item
+  define ``externally'' the optical element radius of curvature
+\item
+  optimize the focal spot
+\end{itemize}
+
+a) Using the (+,-) system defined in the last exercise at photon energy
+20 keV, bend sagittally the second crystal to focus in the horizontal
+plane at the sample position, placed 1000 cm downstream from the
+monochromator (monochromator at 3000 cm from the source). Calculate
+horizontal spot size.
+
+b) Study the effect of the ratio between the distances mono-sample and
+source-mono in the transmitted intensity. Study the case of M=1/30. See
+the effects in energy resolution and system transmitivity. Explain these
+differences. Verify that ratio 1/3 is the optimum.
+
+Hints: You may use the workspace files ex18a\_sagittalfocusing.ows also
+contains a python script that scans the magnification. One can see that
+the intensity peaks at about 1/3. A script is included to calculate the
+curvature radius: Rs (20 keV, M=1/3)=148.3 cm.
+
+Answer
+
+a) Focusing system: Spot width H=334 mm,
+I/I\textsubscript{0}=1090/25000, E=18 eV
+
+Non-focusing system: Spot width H=189mm,
+I/I\textsubscript{0}=1094/25000, E=18 eV
+
+Best focus very close to the focal position. The spot size does not
+change appreciably.
+
+b) p=30m, q=1m, R\textsubscript{s}=47.8 cm, Spot width=0.012 cm,
+I/I\textsubscript{0}=168/25000, E=5.8 eV
+
+The study of the variation of the intensity as a function of the
+magnifications needs to run shadow for many points of M. It can be done
+with a macro. The result should show an optimum magnification of M=1/3
+for large divergence values. The python script will show this effect (5
+mrad).
+
+Intensity (in arbitrary units) versus magnification factor M for a point
+and monochromatic (E= 20 keV) source placed at 30 m from the sagittaly
+bent crystals. The beam divergences is 5 mrad (can be changed in the
+macro). We clearly observe the maximum of the transmission at M=0.33, as
+predicted by the theory.
+
+\section{Simulation of a complete
+beamline.}\label{simulation-of-a-complete-beamline.}
+
+You will learn to:
+
+\begin{itemize}
+\tightlist
+\item
+  Combine several optical elements
+\item
+  Obtain final results for a beamline in terms of flux, resolution and
+  spot size. 
+\end{itemize}
+
+Define the following elements in SHADOW:
+
+Geometrical Gaussian source at 10000±10 keV (box distribution) (like in
+exercise 15 b, but changing the energy interval)
+
+M1: Cylindrically collimating mirror in the vertical plane at 25 m.
+Grazing angle 0.12 degrees. Rh coating (density=12.4 g/cc). Infinite
+dimensions.
+
+MONO: Double crystal monochromator, Si 111, with second crystal
+sagittally bent (focusing the source into the sample position in the
+horizontal plane), at 30 m from the source (Rs=296.6 cm)
+
+M2: Re-focusing mirror at 35m from the source, focusing at the sample
+position. Same angle as M1
+
+Sample at 40 m
+
+Calculate:
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi})}
+\tightlist
+\item
+  Beam geometry at the sample position
+\item
+  Energy resolution
+\item
+  Transmitivity of the whole beamline. Number of photons at the sample
+  position supposing that at the source we have, at 10 keV, a flux of 5
+  10\textsuperscript{13} ph/sec/0.1\%bw
+\end{enumerate}
+
+b) How are these results modified using a focusing first mirror and a
+flat second mirror?
+
+Hint: you may use the workspace file ex19\_beamline.ows
+
+Answer
+
+\textsubscript{source}=4 eV (optimized source bandwidth); =1.3eV;
+I/I\textsubscript{0}=1406/5000
+
+Transmitivity in one eV=T=(I/
+/(I\textsubscript{0}/\textsubscript{source})=(1406/1.3)/(5000/4)
+
+Number of photons at the source in one eV bandwidth =N= 5
+10\textsuperscript{12}
+
+Total number of photons = N×T×E
+
+Intensity distribution in the (X,Z) plane at the image position
+
+Energy distribution:
+
+\section{Slope errors.}\label{slope-errors.}
+
+You will learn to:
+
+\begin{itemize}
+\tightlist
+\item
+  Use Waviness preprocessor to create a file sampling slope errors
+\item
+  Use presurface to inject it in SHADOW
+\item
+  See the important effect of slope errors in the focal size 
+\end{itemize}
+
+a) Load the Kirkpatrick-Baez system of exercise 16. Set mirror surface
+to be elliptical. Check that mirror dimensions are 40×4
+cm\textsuperscript{2}. Calculate spot sizes without slope errors.
+
+b) use the preprocessor widget Waviness to create maps of slope errors.
+For adjusting the slope errors to the wanted values, modify the value of
+the initial Y slope error in order to get a value close to the desired
+tangential slope error of 0.5 arcsec rms. Then modify the number of
+points in X in order to adjust the sagittal slope error to 1 arcsec rms.
+In the oe ``Advanced setting'' tab, select ``Modified surface'' subtab
+and check the file name containing the errors. This is automatically
+populated if one connects the Waviness with the Mirror widgets. One can
+also have a quick preview from there/
+
+Hints: use the workspace ex20\_slopeerrors.ows
+
+Answer
+
+Top: No slope errors: 7.5 (V) × 40 (H) m\textsuperscript{2}. Bottom:
+with Slope errors: 111 (H) × 89 (V) m\textsuperscript{2}
+
+\section{Thermal bump.}\label{thermal-bump.}
+
+You will learn to:
+
+\begin{itemize}
+\tightlist
+\item
+  use a python script to create a file sampling a thermal bump
+\item
+  see the effect of the bump in energy resolution. 
+\end{itemize}
+
+Load the ex21\_thermalbump.ows workspace. Run the script to create a
+Gaussian bump bump.dat Run the system (a single Si111 crystal) without
+and with thermal bump. See the changes in the energy resolution.
+
+Answer
+
+No bump: 1.4 eV, H: 8.5 mm, V: 0.59 m
+
+With bump: 9.6 eV, H: 10.1 mm, V: 4.4 m
+
+\section{Curved crystal monochromators: Rowland and off-Rowland
+configurations}\label{curved-crystal-monochromators-rowland-and-off-rowland-configurations}
+
+You will learn to:
+
+\begin{itemize}
+\tightlist
+\item
+  understand the effect of crystal radius in energy resolution and
+  focusing conditions
+\item
+  calculate the focusing conditions in and out Rowland configuration 
+\item
+  understand the importance of using contour curves with PlotXY
+\item
+  simulate an asymmetric crystal
+\end{itemize}
+
+a) Using the same Gaussian source as in exercise 21, verify the focusing
+conditions for a symmetrical Si111 Bragg crystal at 10 keV, with p=30m.
+Calculate E. Calculate E for R\textsubscript{t}=5000 cm and
+R\textsubscript{t}=2500 cm. Explain the differences.
+
+b) Calculate the Rowland conditions for 10 keV, Si111, p=30m and
+asymmetry angle =5º. Calculate energy resolution and spot size.
+
+Hint: use ex22\_rowland.ows
+
+Answer
+
+a) For the focusing conditions (first branch), we have
+R\textsubscript{t}=15171 cm (see results in Info widget) and E=1.32 eV
+
+For R\textsubscript{t}=5000 cm (second branch) we then have E=1.38 eV
+
+For R\textsubscript{t}=2500 cm (third branch) we then have E=3.9 eV
+
+b) Using the script to calculate Rowland conditions, we get
+R\textsubscript{t}=10623.284 cm, q=1184.8 cm; We get .E=0.72 eV; spot
+size = 7.1 mm ×276 mm.
+
+\section{Crystals in Laue geometry}\label{crystals-in-laue-geometry}
+
+You will learn to:
+
+\begin{itemize}
+\tightlist
+\item
+  Set Laue crystals in SHADOW
+\item
+  See the transformation in the phase space
+\item
+  Apply a macro to copy intensity from one file to another.
+\end{itemize}
+
+Load the system from file ex23\_laue.ows, consisting in an asymmetric
+Laue diamond (111) crystal (a=3.55 Å) and a symmetric Bragg germanium
+(220) crystal (a=5.57 Å) in non-dispersive configuration. Show the
+energy histograms after the two crystals. Study how the Laue crystal
+change of phase space of the beam. Relate these changes to the Liouville
+theorem.
+
+Answer
+
+Left: Energy resolution after the first Laue crystal (0.8 eV) and,
+Right: energy resolution after the second Bragg Ge crystal (0.64 eV)
+
+Phase space (Z,Z') after the Laue crystal:
+
+Phase space (Z,Z') before the crystal.
+
+Left: It can be displayed using the Plot XY widget connected to the
+Source and retraced 40 m.
+
+Right: However, it is interesting to display only the beam that will be
+diffracted by the Laue crystal. For that we need to manipulate the beam
+incoming to the Laue crystal, and change the ray intensities (i.e., the
+electric fields) copying the values after the diffraction. This is done
+with a script. It guaranteed that the area of the phase space
+(corresponding to the beam intensity) is conserved as required by the
+Liouville theorem.
+
+\section{Transfocators}\label{transfocators}
+
+You will learn to:
+
+\begin{itemize}
+\tightlist
+\item
+  Run a transfocator
+\item
+  Find the position of the best focus
+\item
+  Study the changes due to the source energy (chromatic aberrations)
+\end{itemize}
+
+Implement a monochromatoc Gaussian source of 48.2 (H) x 9.5 (V) m RMS
+size and 100 (H) x 4.3 (V) rad RMS divergence. Create the same source
+for two different energies (E1=35200 eV and E2=35700 eV).
+
+Implement a transfocator consisting of two CRLs, 2D-focusing (in both H
+and V), the first made in Be (16 lenses of radius 200 m, separated
+50m), and the second in Al (21 lenses of radius 200 m, separated
+50m). The focal distances are p=3150 cm and q=1000 cm. This setup is
+discussen in Baltser et al.
+\href{http://dx.doi.org/10.1117/12.893343}{\emph{\emph{http://dx.doi.org/10.1117/12.893343}}}
+
+Compare the results using plotxy. Study the beam evolution close to the
+focal plane using focnew and ray\_prop: you will find a small
+astigmatism, i.e., the H and V foci are at slightly different position
+(you will find that the astigmatism disappears when using a point
+source, so it is the result of the final dimensions of the source).
+Change the energy of the source from 35200 eV to 35700 eV and see the
+effect in focal position and intensity.
+
+Hint: use the system in file ex24\_transfocator.ows.
+
+Answer
+
+For E=35200 eV we find a focus of 34 x 10 m (FWHM) with I= 11528, best
+H focus at about -40 cm (you can use focnew or ray\_prop implemented in
+two scripts).
+
+Sagittal focus at : -65.4294
+
+Tangential focus at : -40.9559
+
+Circle of least confusion : -54.2916
+
+For E=35700 eV we find a focus of 34 x 6.1 m (FWHM) with I= 11734
+
+Sagittal focus at : -32.9289
+
+Tangential focus at : -5.03177
+
+Circle of least confusion : -20.3752
+
+\section{Fresnel propagator}\label{fresnel-propagator}
+
+You will learn to:
+
+\begin{itemize}
+\tightlist
+\item
+  Compare the ray tracing results versus wave optics results for an
+  aperture in 1D
+\item
+  Use a python script to compute the Fresnel wave optics propagator. 
+\end{itemize}
+
+Implement a monochromatoc (E=11000 eV) , collimated in H and with enough
+divergence in V to illuminate a 100 m slit placed at 3760 cm from the
+source. Compare the results by ray tracing propagation at 550 cm from
+the slit with the diffraction pattern calculated by wave optics.
+
+Hints: Use the ex25\_fresnel.ows workspace.
+
+Answer
+
+A monochromatic (E=11000 eV) point geometric source with negligible
+horizontal divergence is created. A slit is placed and the histogram of
+Z retraced at 550 cm shows a mostly planar distribution (ray tracing
+results), so the projection of the screen in the image plane:
+
+the script included in the workspace implements a Fresnel propagator
+that computes the propagation of the shadow rays at the exit of the
+screen, into a detector plane at 550 cm:
+
+\section{Two slits experiment - python
+scripts}\label{two-slits-experiment---python-scripts}
+
+You will learn to:
+
+\begin{itemize}
+\item
+  Reproduce experimental results of a diffraction from a double-slit
+  Leitenberg \emph{et al.} Physica B 336 (2003) 63-67
+  \href{http://dx.doi.org/10.1016/S0921-4526(03)00270-9}{\emph{\emph{http://dx.doi.org/10.1016/S0921-4526(03)00270-9}}}
+\item
+  Define a doube-slit in SHADOW using a screen/slit with external file
+  definition
+\item
+  Define a source optimised to illuminate into a reduced acceptance.
+\item
+  Implement a Fresnel-Kirchhoff propagator in a python script to compute
+  the diffraction patter produced by two slits
+\end{itemize}
+
+Implement a monochromatic (E=14000 eV) rectangular source of 0 (H) x 140
+(V) m RMS size and 0 (H) x 2500 (V) rad RMS divergence optimised to
+illuminate a square of 100 m at 3090 cm (defined in file
+acceptance.dat). Trace the source into a screen containing the double
+slit, defined in a file twoslits.pol. Perform Fresnel propagation to to
+plane at 500 cm from the slits plane (fully coherent illumination). Do
+the same for an ensemble of sources with different phases, and add the
+final intensities (partial coherence).
+
+Tips:
+
+Use the file ex26\_two\_slits.ows
+
+Use a source of 140 microns vertical, with enough divergence to fully
+
+illuminate the slits plane (15.4 microns) at 30.9m, so the divergence is
+
+(70+7.7)*1e-3/30.9 rads.
+
+Use variance reduction at the source to improve efficiency, with
+acceptance file: acceptance.dat
+
+The two slits can be defined using external file in the Screen-Slit
+widget twoslits.pol in the Screen-Slit widget
+
+After running SHADOW, the python script performs the propagation in
+vacuum and the ensemble average. Please note that there are parameters
+hard-coded in this
+
+script.
+
+Answer
+
+\section{More Examples}\label{more-examples}
+
+Other workspaces with more examples are also available:
+
+\begin{itemize}
+\item
+  CRL\_Snigirev\_1996.ows 
+\item
+  EBS\_3\_pole\_wiggler.ows 
+\item
+  crystal\_analyzer\_diced.ows 
+\item
+  crystal\_asymmetric\_backscattering.ows 
+\item
+  crystal\_mosaic.ows 
+\item
+  hybrid-mirror.ows 
+\item
+  hybrid-twoslits.ows 
+\item
+  knife\_edge\_scan.ows 
+\item
+  screen\_pattern.ows 
+\end{itemize}
+
+Appendix - The very basics of SHADOW
+
+1 SHADOW introduction
+
+SHADOW is a ray-tracing program specially optimized for the design of
+the synchrotron radiation beamline optics.
+
+SHADOW generates and traces \emph{a beam }along the \emph{optical
+system}. The beam is a collection of \emph{rays }in a given point of the
+beamline which are stored in a disk file. The optical system is a
+collection of \emph{optical elements (o.e.) }(mirrors, multilayers,
+slits, screens, etc.) placed in a sequential order.
+
+Each ray is an array of 18 variables or \emph{column}s. Each variable of
+column has an special physical meaning. The first six defines the
+geometry: spatial coordinates (Col. 1,2,3 or x, y and z, respectively)
+and the direction of the ray (cols. 4,5,6, or x',y' and z',
+respectively). The rest of the columns defines the history of the ray
+traversing the optical system (electric vector for s-polarization (cols.
+7,8,9) and p-polarization (cols. 16-18), flag for lost ray (10),
+wavelength (11) etc.).
+
+The \emph{source }is the beam at the starting point. It is generated by
+SHADOW by sampling the spatial, angular, energy and other qualities of
+the synchrotron radiations sources (i.e., bending magnets, wigglers and
+undulators) into a finite number of rays, using a Monte Carlo method. At
+the source position the intensity of each ray (or better, its
+probability of observation) is set to 1. This intensity will decrease
+along the beamline because of the interaction of the ray with the
+optical elements. The source generated by SHADOW samples linearly the
+real source, which allows scaling the intensity with the number of
+photons.
+
+SHADOW traces the source sequentially thought each individual optical
+element of the optical system. SHADOW solves the intercept of each ray
+at a given o.e., calculates the output direction and the decrease in
+intensity. This decrease is calculated for each ray using a physical
+model (i.e. Fresnel equations for mirrors, Dynamical Theory of the
+Diffraction for perfect crystals, etc.)
+
+2 SHADOW files (it can be ignored for most ShadowOui users)
+
+By default, ShadowOui runs SHADOW without writing files. It is however
+possible to write these files, and to understand their meaning, in
+particular when one wants to recover old SHADOW runs and export results
+to other programs.
+
+Important input files (written by SHADOW):
+
+\begin{itemize}
+\tightlist
+\item
+  start.xx an ASCII file with the list of variables for the source or
+  optical elements (start.00 for the source, start.01 for the first o.e,
+  start.02 for the second, and so on)
+\item
+  systemfile.dat a small file listing the start.xx files to be traced.
+\end{itemize}
+
+After running SHADOW, the binary files containing the rays at different
+points are:
+
+\begin{itemize}
+\tightlist
+\item
+  begin.dat binary file containing the beam at the source position
+\item
+  mirr.xx binary file containing the beam on each o.e. (i.e. mirr.02 is
+  the beam on the second o.e)
+\item
+  star.xx binary files with the beam at the image created by each o.e.
+  The image of a given o.e. is the source for the following o.e.
+\item
+  screen.xxyy inary files for screens or slits. Screens allow to define
+  apertures (slits or beam stoppers) and absorbers (filters). xx refers
+  to the o.e. and yy refers to the screen order (i.e. screen.0204 means
+  the fourth slit associated to the 2\textsuperscript{nd} o.e.)
+\end{itemize}
+
+3 SHADOW frame
+
+The coordinate system of SHADOW is (schematic, ):
+
+Note that:
+
+\begin{itemize}
+\tightlist
+\item
+  The y(2) coordinate is along the beam direction
+\item
+  The frame is rotated if one o.e. is rotated
+\item
+  The position, orientation, etc. of any o.e. is always referred to the
+  previous one
+\end{itemize}
+
+4 Effect of o.e. orientation in SHADOW frame
+
+5 Script programming (python): survival guide
+
+Before anything, in python:
+
+\textgreater{}\textgreater{}\textgreater{} import Shadow
+
+There are only three main objects in Shadow python: a container for the
+variables needed to create a source (the same variables as in the file
+start.00), a container for the variables necessary to define an optical
+element (the same as in the files start.01, start.02, etc.), and a
+container for the beam (same information as in the binary files
+begin.dat, star.xx and screen.xxyy)).
+
+Initialize them as:
+
+src = Shadow.Source()
+
+oe1 = Shadow.OE()
+
+oe2 = Shadow.OE()
+
+beam = Shadow.Beam()
+
+In the case we want to read variables from existing files do:
+
+src.load(``start.00'')
+
+oe1.load(``start.01'')
+
+oe2.load(``start.02'')
+
+For applying to the beam the source:
+
+beam.genSource(src)
+
+For tracing the two optical elements:
+
+beam.traceOE(oe1)
+
+beam.traceOE(oe2)
+
+Access SHADOW beam
+
+The rays are in a numpy array:
+
+\textgreater{}\textgreater{}\textgreater{} print(beam.rays)
+
+{[}{[} 0.00039945 0. 0.00034409 ..., 0. 0. 0. {]}
+
+{[}-0.00109609 0. 0.00174768 ..., 0. 0. 0. {]}
+
+{[}-0.0013806 0. -0.00160363 ..., 0. 0. 0. {]}
+
+...,
+
+{[}-0.0005546 0. -0.00137695 ..., 0. 0. 0. {]}
+
+{[} 0.00045102 0. -0.00234013 ..., 0. 0. 0. {]}
+
+{[}-0.00062769 0. 0.00102393 ..., 0. 0. 0. {]}{]}
+
+Write binary file:
+
+beam.write('star.02')
+
+Visualizing results
+
+Shadow.ShadowTools.plotxy(beam,1,3)
+
+Shadow.ShadowTools.histo1(beam,1)
+
+Using Scripts in ShadowOui
+
+It is possible to connect a ``Python Script'' widget to a source or
+optical element and extract and modify the information there. This is
+very useful for making things that are not implemented as widgets. The
+SHADOW objects are inside a large object that the ``Python Script''
+widget receives as in\_object and resends as out\_object. For example:
+
+beam = in\_object.\_beam
+
+print((in\_object.history{[}1{]}.\_shadow\_oe\_end.\_oe.FILE\_SCR\_EXT))
+
+6 Resources
+
+SHADOW papers:
+
+\begin{itemize}
+\tightlist
+\item
+  F. Cerrina and M. Sanchez del Rio "Ray Tracing of X-Ray Optical
+  Systems" Ch. 35 in Handbook of Optics (volume V, 3rd edition), edited
+  by M. Bass, Mc Graw Hill, New York, 2009. ISBN: 0071633138 /
+  9780071633130
+  \href{http://www.mhprofessional.com/handbookofoptics/vol5.php\%20}{\emph{http://www.mhprofessional.com/handbookofoptics/vol5.php}}
+\item
+  M. Sanchez del Rio, N. Canestrari, F. Jiang and F. Cerrina "SHADOW3: a
+  new version of the synchrotron X-ray optics modelling package" J.
+  Synchrotron Rad. (2011). 18, 708-716
+\end{itemize}
+
+\href{http://dx.doi.org/10.1107/S0909049511026306\%20}{\emph{http://dx.doi.org/10.1107/S0909049511026306}}
+
+Code repositories:
+
+\begin{itemize}
+\item
+  ShadowOui-Tutorials (this document and the workspace files used here):
+  \href{https://forge.epn-campus.eu/projects/shadow3/}{\emph{\emph{https://github.com/srio/ShadowOui-Tutorial/}}}
+\item
+  ShadowOui repository
+  \href{https://github.com/srio/shadow3/}{\emph{https://github.com/lucarebuffi/ShadowOui/}}
+
+  SHADOW3 repository
+  \href{https://github.com/srio/shadow3/}{\emph{https://github.com/srio/shadow3/}}
+  (check the README files in the ``doc'' folder) 
+\end{itemize}
+
+\end{document}

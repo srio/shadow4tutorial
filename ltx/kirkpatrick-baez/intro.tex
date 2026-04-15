@@ -1,0 +1,98 @@
+\subsection{Kirkpatrick--Baez (KB) Mirrors}
+
+\noindent
+KB mirrors are a system of \textbf{two orthogonal grazing-incidence mirrors}
+arranged in series, each focusing in one plane only. Proposed by Kirkpatrick
+and Baez (the father of the singer Joan Baez) in 1948, they provide a practical solution to the astigmatism inherent in single grazing-incidence mirrors, and reduce significatively abberations (coma) because the KB system approximates an imaging system that verifies the Abbe sine condition.
+
+As follows from the Coddington equations, a single elliptical mirror at
+grazing incidence focuses strongly in the tangential plane but weakly in
+the sagittal plane. The KB solution decouples the two planes:
+
+\begin{itemize}
+    \item \textbf{Mirror $M_1$} focuses in the vertical (horizontal) plane.
+    \item \textbf{Mirror $M_2$} focuses in the horizontal (vertical) plane.
+    \item The two mirrors are oriented at $90^\circ$ to each other.
+\end{itemize}
+
+\noindent
+Each mirror is a section of an ellipse whose two foci coincide with the
+source and the desired focal point:
+
+\begin{equation*}
+    \text{Source}
+    \;\longrightarrow\;
+    \boxed{M_1 \;\text{(focus in plane 1)}}
+    \;\longrightarrow\;
+    \boxed{M_2 \;\text{(focus in plane 2)}}
+    \;\longrightarrow\;
+    \text{Focus}
+\end{equation*}
+
+\noindent
+The order matters: $M_1$ and $M_2$ present different magnifications. Usually in Synchrotron Radiation rings, the emittance (therefore source size) is larger in horizontal, therefore it is interesting to have the HFM (horizontal focusing mirror) closer to the image to profit the higher demagnification.
+
+\paragraph{Focusing Condition}
+
+Each mirror obeys its the Coddington equations because of the ``definition" of ellipse: point-to-point focusing for any point of the ellipse. For mirror $M_i$
+with glancing angle $\theta_i$, object distance
+$p_i$ and image distance $q_i$:
+
+\begin{equation}
+    \frac{1}{q_i} + \frac{1}{p_i} &= \frac{2}{R_i \sin\theta_i}
+    \qquad \text{(tangential, focusing plane)} 
+\end{equation}
+
+\noindent
+Each mirror is designed so that the tangential equation is satisfied exactly
+for the chosen conjugates $p_i$ and $q_i$ (yielding an elliptical profile). The mirrors are flat in the sagittal direction.
+
+\paragraph{Aberrations}
+
+On-axis focusing is in principle perfect for each plane independently.
+Residual aberrations arise from i) Coma: each mirror satisfies the Abbe sine condition only approximately; coma grows with the numerical aperture, and ii) Cross-coupling, because the magnification the two mirrors are different.
+
+
+
+\paragraph{Advantages}
+
+\begin{itemize}
+    \item \textbf{Decoupled adjustment}: each mirror can be tuned independently
+          in its focusing plane.
+    \item \textbf{Flexible demagnification}: different conjugate distances can
+          be chosen for each plane, allowing asymmetric focusing (e.g.\ a
+          round spot from an asymmetric source).
+    \item \textbf{Broadband}: no wavelength selectivity; works across a wide
+          photon energy range.
+    \item \textbf{Relatively easy fabrication}: each mirror requires only a
+          1D elliptical figure, far simpler to manufacture and measure than a
+          toroid or full ellipsoid.
+\end{itemize}
+
+\paragraph{Disadvantages}
+
+\begin{itemize}
+    \item \textbf{Two reflections}: throughput is reduced by absorption and
+          scattering losses on both mirrors, increasingly so at higher
+          photon energies.
+    \item \textbf{Alignment sensitivity}: a tilt of $M_2$ introduces
+          astigmatism; the two mirrors must be carefully co-aligned.
+    \item \textbf{Longitudinal separation}: the two focal planes are slightly
+          displaced unless the design explicitly accounts for the separation
+          between $M_1$ and $M_2$.
+\end{itemize}
+
+\paragraph{Simulations of the surface irregularities (slope errors)}
+
+
+Mirrors used in grazing incidence and making a high demagnification are very sensitive to the surface imperfections. Indeed, the mirrors perfoemance in current synchrotron beamlines is limited by surface errors. It is therefore important to simulate this effect. In SHADOW, this is done overlapping the mirror error profile defined in a mesh file. This contains the deformation heigh surface $z(x,y)$ that is added to the ideal elliptical shape. 
+
+We use here 
+the DABAM (DAta BAse of Metrology) database to retrieve the error profiles. It part of the OASYS project. The repository \url{https://github.com/oasys-kit/DabamFiles/} contains a number of entries, each consisting of two files:
+\begin{itemize}
+    \item dabam-NNN.txt — a JSON header with metadata about the mirror
+    \item dabam-NNN.dat — the actual metrology data (slope profile measurements).
+\end{itemize}
+
+They are accesible from OASYS using the ``DABAM Heigh Profile" widget (in Syned-Tools) and can be plugged directly in the SHADOW4 widgets. 
+

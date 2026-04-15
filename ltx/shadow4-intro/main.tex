@@ -1,0 +1,49 @@
+\subsection{Ray tracing examples}
+
+This first example is intended to be a first contact OASYS2 and SHADOW4. Just experience using widgets and making simple simulations. 
+
+\textbf{You will:}
+
+\begin{itemize}
+    \item define grid and geometrical sources
+    \item Experience with different mirrors
+    \item find the position of foci
+    \item study the image (intensity distribution) at image and on the mirror (footprint)
+\end{itemize}
+
+\textbf{Questions:}
+
+\textbf{i)}  
+
+Define grid source over a rectangle in real space and collimated in divergence space
+
+Experience with different mirrors to focus it and find the focal positions. The following mirrors could be studied: 
+
+\begin{itemize}
+    \item Plane mirror (no focus)
+    \item Spherical mirror in normal incidence (stigmatic focus)
+    \item Spherical mirror in not-normal (grazing) incidence (astigmatic focus)
+    \item Parabolic mirror, not-normal incidence (perfect stigmatic focus)
+\end{itemize}
+
+\textbf{ii)}  
+
+\begin{itemize}
+    \item define geometrical source, point in real space, and isotropic (cone) in divergence space
+    \item place a spherical mirror of $R$=1 m and distances $p=q=$ 1 m. See perfect focus and homogeneous footprint.
+\end{itemize}
+
+
+\textbf{Answer}
+
+Use the OASYS workspace file {\tt introduction.ows}. Define grid with the center sligtly shifted from (0,0). Define mirrors with internal calculation of the mirror parameters using a focal distance $q=$0.25 m. Use ``FocNew" widget to see the evolution of the beam size, and to check is the focus is at the image position $q$. Results for Spherical mirror with 45$^\circ$ incidence are at Fig. 1. 
+
+\begin{figure}[H]
+\label{fig:sf-fig1}
+\caption{Left: beam evolution (from FocNew). In vertical (Z), the best focus is at zero (at the image plane). In horizontal (X) the best focus is at 0.25 m downstream from the image plane, as a result of astigmatism provoked by the non-normal incidence with spherical reflectors. Right: diagram of the path of the rays.}
+\includegraphics[width=0.48\textwidth]{shadow4-intro/fig1a.png}
+\includegraphics[width=0.48\textwidth]{shadow4-intro/fig1b.png}
+\end{figure}
+
+
+

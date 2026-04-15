@@ -1,0 +1,187 @@
+% \documentclass{article}
+% \usepackage{amsmath}
+% \usepackage{amssymb}
+% \usepackage{graphicx}
+% \usepackage{hyperref}
+
+% \title{Emission from a Bending Magnet: Summary Based on \cite{SanchezdelRioPadmore2024}}
+% \author{Compiled from: Ray tracing simulations of bending magnet sources with SHADOW4}
+
+
+% \begin{document}
+
+% \maketitle
+% \subsection*{Emission from a Bending Magnet: A Summary}
+
+
+% \subsubsection*{Physical Setup}
+% A bending magnet (BM) is a dipole with a constant magnetic field \(B\) over a length \(L\).  
+% Electrons moving at relativistic speeds are forced into a circular trajectory with radius:
+% \[
+% R \approx 3.3356 \frac{E[\text{GeV}]}{B[\text{T}]} \quad (\text{meters}),
+% \]
+% where \(E\) is the electron energy.
+
+% \subsubsection*{Key Emission Properties}
+% \begin{itemize}
+%     \item \textbf{Critical Energy \(E_c\)}: Divides the photon energy spectrum into two equal-power regions:
+%     \[
+%     E_c[\text{keV}] = 2.2183 \frac{E[\text{GeV}]^3}{R[\text{m}]}.
+%     \]
+%     \item \textbf{Photon Spectrum}: Described by universal functions \(G_1(y)\) and \(H_2(y)\), where \(y = E/E_c\).
+%     \begin{align*}
+%         G_1(y) &= y \int_{y}^{\infty} K_{5/3}(x) \, dx, \\
+%         H_2(y) &= y^2 K_{2/3}^2(y/2).
+%     \end{align*}
+%     \begin{itemize}
+%         \item On-axis flux (vertical angle \(\psi = 0\)) is given by \(H_2\).
+%         \item Fully integrated flux over \(\psi\) is given by \(G_1\).
+%     \end{itemize}
+% \end{itemize}
+
+% \subsubsection*{Angular and Polarization Distribution}
+% The radiation is emitted in a cone, with intensity depending on the reduced vertical angle \(\Psi = \gamma \psi\) and reduced energy \(\epsilon = E/E_c\).
+% \begin{itemize}
+%     \item Angular distribution:
+%     \[
+%     F(\Psi, \epsilon) = \left[(1+\Psi^2)\left( l_2 K_{2/3}(\xi) + l_3 K_{1/3}(\xi) \frac{\Psi}{\sqrt{1+\Psi^2}} \right) \right]^2,
+%     \]
+%     where \(\xi = (1+\Psi^2)^{3/2} \epsilon / 2\) and \(l_2, l_3\) define polarization states (\(\sigma\) and \(\pi\) components).
+%     \item Total flux at a given angle and energy:
+%     \[
+%     N(\psi, E) = N_0(E) \frac{F_\sigma + F_\pi}{F_\sigma(0, \epsilon)}.
+%     \]
+% \end{itemize}
+
+% \subsubsection*{Polarization Degree}
+% The degree of polarization for a ray is:
+% \[
+% P_i = \frac{\sqrt{F_\sigma(\psi_{V,i}, E_i)}}{\sqrt{F_\sigma} + \sqrt{F_\pi}}.
+% \]
+% SHADOW4 models both \(\sigma\) (horizontal) and \(\pi\) (vertical) polarization components.
+
+% \subsubsection*{Effective Source Size}
+% In modern low-emittance rings, the \textbf{effective photon source size} can be much larger than the electron beam size due to:
+% \begin{enumerate}
+%     \item Geometric effect from the curved trajectory.
+%     \item Radiation cone emission in the horizontal direction.
+%     \item Electron beam emittance (size and divergence).
+% \end{enumerate}
+% The total source size is approximated by convolution:
+% \[
+% \Sigma_x^2 = \sigma_x^2 + \sigma_r^2 + \sigma_x^{\text{geo},2},
+% \]
+% where:
+% \begin{itemize}
+%     \item \(\sigma_x\): electron beam size,
+%     \item \(\sigma_r\): radiation cone contribution,
+%     \item \(\sigma_x^{\text{geo}}\): geometric effect from arc trajectory.
+% \end{itemize}
+% For vertical direction: \(\sigma_z^{\text{geo}} = 0\).
+
+% \subsubsection*{Ray Sampling in SHADOW4}
+% Rays are sampled in steps:
+% \begin{enumerate}
+%     \item Sample photon energy \(E_i\) and emission angles \(\psi_{V,i}, \psi_{H,i}\) from \(N(\psi, E)\).
+%     \item Sample emission point along the arc trajectory.
+%     \item Apply electron beam emittance (Gaussian sampling of position and angle).
+%     \item Combine contributions to get final ray coordinates and directions.
+%     \item Assign polarization based on \(F_\sigma\) and \(F_\pi\).
+% \end{enumerate}
+
+% \subsubsection*{Important for 4th-Generation Rings}
+% \begin{itemize}
+%     \item The \textbf{horizontal emission cone} must be included for accurate source size modeling.
+%     \item For very low-energy photons (e.g., infrared), \textbf{diffraction-limited size} becomes relevant:
+%     \[
+%     \sigma^{\text{DL}} = \frac{\lambda}{4\pi\sigma_r},
+%     \]
+%     where \(\lambda\) is the photon wavelength and \(\sigma_r\) the natural emission angle.
+%     \item This effect is \textit{not} included in SHADOW4 for BM sources (but is included for undulators).
+% \end{itemize}
+
+% \subsubsection*{Conclusion}
+% Bending magnet emission is characterized by a broad spectrum centered around \(E_c\), with a conical angular distribution and mixed polarization. In modern low-emittance rings, the effective source size is dominated by geometric and radiation cone effects, not just electron beam size. SHADOW4 includes these effects for accurate ray-tracing simulations.
+
+
+\subsection{Emission of a Bending-Magnet Synchrotron Source: summary from \cite{SanchezdelRioPadmore2024}}
+
+A bending magnet (BM) is a dipole magnet that forces relativistic electrons circulating in a storage ring to follow a curved trajectory. The transverse acceleration associated with this circular motion leads to the emission of synchrotron radiation. Bending magnets constitute broadband, incoherent photon sources widely used in synchrotron facilities.
+
+\subsubsection{Electron Trajectory and Curvature}
+
+An electron of energy $E_e$ moving in a magnetic field $B$ follows a circular trajectory of radius $R$ given by
+\begin{equation}
+R = \frac{p}{eB} = \frac{m_0 \beta \gamma c}{eB}
+\approx \frac{3.3356\,E_e\,[\mathrm{GeV}]}{B\,[\mathrm{T}]} ,
+\end{equation}
+where $\gamma$ is the relativistic Lorentz factor. Radiation is emitted continuously along the arc of the trajectory.
+
+\subsubsection{Spectral Properties}
+
+The synchrotron radiation spectrum emitted by a bending magnet is broadband and characterized by a critical photon energy $E_c$, defined as the energy that divides the total radiated power into two equal halves:
+\begin{equation}
+E_c = \frac{3\hbar c \gamma^3}{2R}
+\approx 2.218 \, \frac{E_e^3\,[\mathrm{GeV}]}{R\,[\mathrm{m}]} \ \mathrm{keV}.
+\end{equation}
+
+For photon energies $E \ll E_c$, the spectrum rises gradually, while for $E \gg E_c$ it decays exponentially. The spectral shape is described by universal synchrotron functions:
+\begin{itemize}
+\item $G_1(E/E_c)$ for the angle-integrated flux,
+\item $H_2(E/E_c)$ for the on-axis spectral flux.
+\end{itemize}
+
+\subsubsection{Photon Flux}
+
+The on-axis spectral photon flux is given by
+\begin{equation}
+N_0(E) \propto E_e^2 \, I \, H_2(E/E_c),
+\end{equation}
+while the flux integrated over vertical angles is
+\begin{equation}
+N(E) \propto E_e \, I \, G_1(E/E_c),
+\end{equation}
+where $I$ is the stored electron beam current. Increasing electron energy enhances both the photon flux and the critical energy.
+
+\subsubsection{Angular Distribution}
+
+Synchrotron radiation from a bending magnet is highly anisotropic. In the vertical plane, emission is confined within a narrow cone of characteristic opening angle
+\begin{equation}
+\psi \sim \frac{1}{\gamma}.
+\end{equation}
+
+The angular distribution depends strongly on photon energy: low-energy photons are emitted over wider angles, while high-energy photons are more tightly collimated.
+
+In the horizontal plane, photons are emitted tangentially along the curved electron trajectory. In modern low-emittance storage rings, the horizontal extent of the photon source is often dominated by the geometry of the trajectory rather than by the electron beam size itself.
+
+\subsubsection{Polarization}
+
+Bending-magnet radiation is partially polarized:
+\begin{itemize}
+\item The $\sigma$-polarized component (electric field in the orbit plane) is dominant and symmetric about the orbit plane.
+\item The $\pi$-polarized component (electric field perpendicular to the orbit plane) vanishes on-axis and becomes significant off-axis.
+\end{itemize}
+
+The degree of polarization depends on photon energy and emission angle.
+
+% \subsubsection{Effective Source Size}
+
+% The effective photon source size of a bending magnet is not determined solely by the electron beam size. It results from the convolution of several contributions:
+% \begin{itemize}
+% \item Electron beam size,
+% \item Electron beam divergence,
+% \item Natural radiation cone,
+% \item Geometrical depth of the curved electron trajectory.
+% \end{itemize}
+
+% In low-emittance storage rings, the geometrical contribution can dominate the horizontal source size. Assuming Gaussian contributions, the effective horizontal source size can be approximated as
+% \begin{equation}
+% \Sigma_x^2 = \sigma_x^2 + \sigma_r^2 + \sigma_{\mathrm{geo}}^2,
+% \end{equation}
+% where $\sigma_x$ is due to the electron beam, $\sigma_r$ to the radiation cone, and $\sigma_{\mathrm{geo}}$ to the trajectory geometry.
+
+\subsubsection{Summary}
+
+Bending magnets provide broadband, partially polarized synchrotron radiation emitted continuously along a curved electron trajectory. The emission exhibits strong spectral and angular dependencies governed by the critical energy. In modern low-emittance storage rings, geometrical effects play a crucial role in determining the effective photon source size, particularly in the horizontal direction.
+
+% \end{document}

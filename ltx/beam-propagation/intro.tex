@@ -1,0 +1,140 @@
+
+\subsection{Phase Space Representation of an Optical Beam}
+
+
+In paraxial (ray) optics, a ray propagating along the $y$ direction can be studied in a transverse direction ($x$ or $z$, we use $x$) by two coordinates:
+\begin{equation}
+  \mathbf{r} = \begin{pmatrix} x \\ x' \end{pmatrix},
+\end{equation}
+where
+\begin{itemize}
+  \item $x$ is the transverse height of the ray at the current plane, and
+  \item $x' = dx/dy$ is the paraxial angle (slope) with respect to the optical axis.
+\end{itemize}
+
+A \emph{beam} is a bundle of many rays; it is represented as a cloud of points
+$(x_i,\, x'_i)$ in the phase plane.
+
+
+A ray travelling a distance $d$ through a uniform medium of refractive index $n$
+is transformed by
+\begin{equation}
+  \begin{pmatrix} x \\ x' \end{pmatrix}_{\!\text{out}}
+  =
+  \underbrace{\begin{pmatrix} 1 & d/n \\ 0 & 1 \end{pmatrix}}_{M_{\text{drift}}}
+  \begin{pmatrix} x \\ x' \end{pmatrix}_{\!\text{in}},
+\end{equation}
+so explicitly
+\begin{align}
+  x_{\text{out}}  &= x_{\text{in}} + \frac{d}{n}\,x'_{\text{in}}, \\[4pt]
+  x'_{\text{out}} &= x'_{\text{in}}.
+\end{align}
+In phase space this is a \textbf{horizontal shear}: the angle is unchanged, but
+each ray's position shifts by an amount proportional to its slope and to the
+propagation distance.  Geometrically, every point in the phase-plane cloud slides
+to the right by $d\,x'/n$, so the cloud as a whole shears.
+
+Two important limiting cases:
+\begin{itemize}
+  \item \textbf{Point source} at $x=0$: the cloud is a vertical line that shears
+        into a tilted line --- the beam diverges spatially.
+  \item \textbf{Collimated beam} ($x'=0$ for all rays): the cloud is a horizontal
+        line and is unaffected by the drift --- the beam width is preserved.
+\end{itemize}
+
+% -------------------------------------------------------------------
+\paragraph{The ABCD Ray-Transfer Matrix}
+
+Any \emph{paraxial} optical element can be described by a $2\times 2$
+\emph{ray-transfer} (or ABCD) matrix
+\begin{equation}
+  M = \begin{pmatrix} A & B \\ C & D \end{pmatrix}, \qquad
+  \begin{pmatrix} x \\ x' \end{pmatrix}_{\!\text{out}}
+  = M \begin{pmatrix} x \\ x' \end{pmatrix}_{\!\text{in}}.
+\end{equation}
+Table~\ref{tab:abcd} lists the matrices for the most common elements.
+
+\begin{table}[h]
+  \centering
+  \caption{ABCD matrices for common paraxial optical elements.}
+  \label{tab:abcd}
+  \begin{tabular}{lcccc}
+    \toprule
+    Element & $A$ & $B$ & $C$ & $D$ \\
+    \midrule
+    Free propagation (distance $d$, index $n$) & $1$ & $d/n$ & $0$ & $1$ \\
+    Thin lens (focal length $f$)               & $1$ & $0$   & $-1/f$ & $1$ \\
+    Flat interface ($n_1 \to n_2$)             & $1$ & $0$   & $0$ & $n_1/n_2$ \\
+    Curved mirror (radius $R$)                 & $1$ & $0$   & $-2/R$ & $1$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+% The determinant of $M$ satisfies
+% \begin{equation}
+%   \det M = AD - BC = \frac{n_1}{n_2},
+% \end{equation}
+% and equals unity when the ray travels through a single medium.  This is the
+% matrix statement of \emph{Liouville's theorem} (see Section~\ref{sec:etendue}).
+
+% For a \emph{compound} system of elements $M_1, M_2, \ldots, M_k$ (in order of
+% traversal), the overall matrix is
+% \begin{equation}
+%   M_{\text{sys}} = M_k \cdots M_2\, M_1.
+% \end{equation}
+% Note the \emph{reverse} ordering: the first element encountered by the ray is
+% rightmost in the product.
+
+% % -------------------------------------------------------------------
+% \subsubsection{\'Etendue and the Optical Invariant}
+% \label{sec:etendue}
+
+% The phase-space \emph{area} occupied by the beam is proportional to the
+% \textbf{\'etendue} (or optical extent):
+% \begin{equation}
+%   G = n \cdot \Delta x \cdot \Delta\theta,
+% \end{equation}
+% where $\Delta x$ and $\Delta\theta$ are the spatial and angular extents of the
+% beam.  Through any lossless, stigmatic optical system the \'etendue is conserved:
+% \begin{equation}
+%   n_1\,x_1\,\theta_1 = n_2\,x_2\,\theta_2.
+% \end{equation}
+% This is the \textbf{Lagrange--Helmholtz invariant}.  Its phase-space interpretation
+% is that a symplectic (area-preserving) transfer matrix can \emph{deform} the
+% phase-space cloud --- stretch, rotate, shear --- but cannot change its area.
+% Consequently, it is impossible to reduce the beam size and the beam divergence
+% simultaneously: reducing one necessarily increases the other.
+
+% % -------------------------------------------------------------------
+% \subsubsection{Gaussian Beams and the \texorpdfstring{$q$}{q}-Parameter}
+
+% For a \textbf{Gaussian beam} the phase-space description is most elegantly
+% expressed through the \emph{complex beam parameter}
+% \begin{equation}
+%   q(z) = z - z_0 + i\,z_R,
+% \end{equation}
+% where $z_0$ is the longitudinal position of the beam waist and
+% $z_R = \pi w_0^2/\lambda$ is the \emph{Rayleigh range} ($w_0$ is the $1/e^2$
+% intensity half-width at the waist).  The beam width $w(z)$ and wavefront radius
+% of curvature $R(z)$ are recovered from
+% \begin{equation}
+%   \frac{1}{q(z)} = \frac{1}{R(z)} - i\,\frac{\lambda}{\pi w(z)^2}.
+% \end{equation}
+
+% Propagation through any ABCD system maps $q$ by the \textbf{M\"{o}bius
+% (bilinear) transformation}
+% \begin{equation}
+%   q_{\text{out}} = \frac{A\,q_{\text{in}} + B}{C\,q_{\text{in}} + D}.
+% \end{equation}
+% This single complex equation encodes the full evolution of both the beam width
+% and the wavefront curvature through an arbitrary paraxial system.
+
+% \subsection*{Free-space propagation of a Gaussian beam}
+
+% Using $M_{\text{drift}}$ with $A=D=1$, $B=d$, $C=0$:
+% \begin{equation}
+%   q_{\text{out}} = q_{\text{in}} + d,
+% \end{equation}
+% so the beam parameter simply \emph{advances} by $d$, in direct analogy with the
+% shear of the ray cloud in phase space.
+

@@ -1,0 +1,46 @@
+\subsection{Ray tracing simulations}
+
+\textbf{You will:}
+
+\begin{itemize}
+    \item understand the effect of crystal radius in energy resolution and focusing conditions
+    \item calculate the focusing conditions in and out Rowland configuration 
+    \item understand the importance of using contour curves with PlotXY simulate an asymmetric crystal
+\end{itemize}
+
+\textbf{Questions:}
+
+\textbf{i)} Using a Gaussian source ($\sigma_x$=10$\mu$m, $\sigma_z$=10$\mu$m, $\sigma_x'$=10$\mu$rad, $\sigma_z'$=10$\mu$rad), calculate the radius of curvature for the focusing conditions $p=q=$30~m for a symmetrical Si111 Bragg crystal at 10 keV. Calculate $Delta E$. This was the Rowland condition.
+Calculate now $Delta E$ for $R$=50 m and $R$=25 m (both off-Rowland). Explain the differences. 
+
+\textbf{ii)} Calculate the Rowland conditions for 10 keV, Si111, p=30m and asymmetry angle $\alpha$=5 deg. Calculate energy resolution and spot size. 
+
+\textbf{Hints:} use {\tt rowland.ows}
+
+
+\textbf{Answer}
+
+i)  The radius of curvature from the Coddington equations is $R$=151.733~m (calculated by the script). 
+It is implemented the first branch, giving $\Delta E$=1.32 eV and focus at 30 m (verified using the caustic widget) of 1.32 $\mu$m.
+
+
+
+For $R$=50~m (second branch) we then have $\Delta E$=2.6 eV and the best focus is found using the caustic widget at $q$=5.95~m and where size is 5.5 $\mu$m. 
+
+For $R$=25~m (third branch) we then have $\Delta E \gt $= 5 eV and the best focus is found using the caustic widget at $q$=2.7~m and where size is 2.24 $\mu$m. 
+
+ii) Using the script to calculate Rowland conditions, we get $R$=10.623 mm, $q$=11.848 m; We get  $Delta E$=0.78 eV; spot size of 170 $\mu$m \textcolor{red}{found at $q\approx$6~m}.
+
+\begin{figure}[H]
+\label{fig:rc-fig1}
+\caption{Bandwidth and image at best focus for Rowland configurations.}
+\includegraphics[width=0.49\textwidth]{rowland-circle/fig1a.png}
+\includegraphics[width=0.49\textwidth]{rowland-circle/fig1a.png}
+\end{figure}
+
+\begin{figure}[H]
+\label{fig:rc-fig2}
+\caption{Bandwidth and image at best focus for off-Rowland ($R$=50~m) configuration.}
+\includegraphics[width=0.49\textwidth]{rowland-circle/fig2a.png}
+\includegraphics[width=0.49\textwidth]{rowland-circle/fig2b.png}
+\end{figure}

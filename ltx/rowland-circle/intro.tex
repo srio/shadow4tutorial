@@ -1,0 +1,143 @@
+\subsection{Efficient focusing with curved crystals: Johann geometry and Rowland circle}
+
+Consider a crystal bent to radius $R$, with diffraction planes \textbf{parallel to the
+crystal surface} (symmetric cut, asymmetry angle $\chi = 0$).  A point source $S$ at
+distance $p$ from the crystal centre emits a divergent beam that impinges on the concave
+surface.  The condition on $p$ and the image distance $q$ such that the reflected
+rays converge to a focus is given by the Coddington equation (for the meridional or diffraction plane)
+
+
+\begin{equation}
+  \frac{1}{p} + \frac{1}{q} = \frac{2}{R\sin\theta_B}
+  \label{eq:meridional_sym}
+\end{equation}
+where
+$\thetaB$ is the Bragg angle at the crystal centre (it is focused independently in the sagittal plane at a different distance, but this is not discussed here).
+
+The \textbf{Johann geometry} bends a flat crystal to radius $R$ and places source $S$ and
+detector $D$ symmetrically at the \emph{equal-conjugate} distance (i.e. 1:1 magnification) satisfying Eq.~\eqref{eq:meridional_sym}:
+\begin{equation}
+  p = q = R\sin\theta_B.
+  \label{eq:equal_conj}
+\end{equation}
+
+At the crystal \emph{centre}, this placement is exact: the incidence angle equals $\thetaB$
+and the Bragg condition $\lambda = 2d\sin\thetaB$ is perfectly satisfied.
+
+Origin of the Johann Error: 
+Now consider a ray hitting the crystal at a point $P$ displaced by a distance $\ell$ along
+the crystal surface from the centre.  Because the crystal is \emph{cylindrically} bent, its
+surface follows a circle of radius $R$.  The local surface normal at $P$ is rotated by an
+angle
+\begin{equation}
+  \delta\phi = \frac{\ell}{R}
+  \label{eq:normal_rotation}
+\end{equation}
+relative to the central normal.  The source $S$, however, is still at the fixed position
+defined by Eq.~\eqref{eq:equal_conj}.  The actual incidence angle at $P$ therefore deviates
+from $\thetaB$, and the Bragg condition is no longer perfectly satisfied.
+
+Working out the geometry to leading order in $\ell/R$, the \textbf{angular error} at $P$ is:
+\begin{equation}
+  \delta\theta \approx \frac{\ell^2 \cos^2\theta_B}{2R^2\sin\theta_B}.
+  \label{eq:angular_error}
+\end{equation}
+
+This error is \emph{second order} in $\ell$: it vanishes at the crystal centre and grows
+towards the edges.  Via the differential of Bragg's law
+$\delta E / E = -\cot\thetaB\,\delta\theta$, the corresponding relative energy broadening
+is:
+
+\begin{keyresult}
+\begin{equation}
+  \delta E \;\approx\; \frac{\ell^2\cos^2\theta_B}{2R^2}
+  \label{eq:johann_error}
+\end{equation}
+\end{keyresult}
+
+This is the \textbf{Johann error}.  Its salient properties are:
+\begin{itemize}
+  \item It scales as $\ell^2$, so using a smaller crystal reduces the error quadratically,
+        at the cost of collected solid angle.
+  \item It vanishes at $\thetaB = 90°$ (backscattering), since $\cos 90° = 0$.
+  \item For a given crystal size $\ell$, larger bending radius $R$ reduces the error ---
+        but also reduces the collected solid angle.
+  \item It is an \emph{intrinsic geometrical aberration} of cylindrical bending: the
+        crystal surface cannot conform simultaneously to the Bragg condition at every point.
+\end{itemize}
+
+The Rowland Circle Construction.
+The three defining elements are:
+\begin{itemize}
+  \item \textbf{Source $S$}, \textbf{crystal centre $C$}, and \textbf{detector $D$} all
+        lie on the Rowland circle of radius $R_W = R/2$.
+  \item The crystal is tangent to the Rowland circle at $C$, and bent to radius
+        $R = 2R_W$.
+  \item The chord $SD$ subtends an angle $2\thetaB$ at the centre of the Rowland circle,
+        consistent with Bragg's law.
+\end{itemize}
+
+As energy (and hence $\thetaB$) changes, the focus point $D$ moves continuously along the
+Rowland circle.  This is the basis for \textbf{energy scanning in Johann spectrometers}
+without translating the source.
+
+
+\paragraph{Extension to the Asymmetric Case}
+In the \textbf{asymmetric Bragg geometry}, the diffraction planes make an angle $\chi$
+(the \emph{asymmetry angle}) with the crystal surface.  The incidence and exit angles with
+respect to the \emph{surface} are then:
+\begin{equation}
+  \alpha = \theta_B - \chi, \qquad \beta = \theta_B + \chi.
+  \label{eq:asym_angles}
+\end{equation}
+(Signs are for the beam-compressing case; they reverse for beam expansion.)  Both $\alpha$
+and $\beta$ satisfy the Bragg condition with respect to the diffracting planes, since the
+\emph{planes} are still at angle $\thetaB$ to the incident beam.
+
+The asymmetry introduces a \textbf{beam expansion factor}:
+\begin{equation}
+  b = -\frac{\sin\alpha}{\sin\beta} = -\frac{\sin(\theta_B-\chi)}{\sin(\theta_B+\chi)}.
+  \label{eq:asym_ratio}
+\end{equation}
+Here $|b|<1$ corresponds to angular expansion (spatial compression) and $|b|>1$ to angular
+compression (spatial expansion).
+
+
+Applying Fermat's principle to the asymmetric geometry --- where the incidence and exit
+angles on the crystal surface are $\alpha$ and $\beta$ respectively --- modifies the
+Coddington equation:
+
+\begin{keyresult}
+\begin{equation}
+  \frac{\sin^2\alpha}{p} + \frac{\sin^2\beta}{q}
+  = \frac{\sin\alpha + \sin\beta}{R}
+  \label{eq:meridional_asym}
+\end{equation}
+\end{keyresult}
+
+For perfect meridional focusing from a point source, the equal-conjugate condition
+generalises to:
+\begin{equation}
+  p = \frac{2R\sin^2\alpha}{\sin\alpha+\sin\beta},
+  \qquad
+  q = \frac{2R\sin^2\beta}{\sin\alpha+\sin\beta}.
+  \label{eq:asym_conjugates}
+\end{equation}
+
+The source and detector are now placed at \emph{different} distances from the crystal, but
+both still lie on the Rowland circle.  To see this, note that the Rowland circle radius is
+unchanged:
+
+\begin{keyresult}
+\begin{equation}
+  R_W = \frac{R}{2}
+  \label{eq:rowland_asym}
+\end{equation}
+\end{keyresult}
+
+The Rowland circle radius is \textbf{independent of asymmetry}.  What changes is the
+angular position of $S$ and $D$ on the circle: $S$ sits at arc angle $\alpha$ and $D$ at
+arc angle $\beta$ from the crystal normal, so the crystal is no longer at the midpoint of
+the $SD$ arc.  The inscribed angle theorem still guarantees that the local Bragg condition
+is satisfied at every surface point that lies on the Rowland circle (Johansson case), or
+approximately so for the Johann approximation.
